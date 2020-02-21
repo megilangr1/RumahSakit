@@ -35,6 +35,7 @@
         id="style_color" />
     <link href="{{ asset('') }}assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
 		<link rel="shortcut icon" href="favicon.ico" />
+		@yield('css')
 </head>
 
 <body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo page-container-bg-solid">
@@ -184,7 +185,8 @@
             Tasks.initDashboardWidget();
         });
 
-    </script>
+		</script>
+		@yield('script')
 </body>
 
 </html>
