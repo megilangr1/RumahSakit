@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::group(['prefix' => 'admin'], function () {
 		Route::group(['middleware' => ['role:admin']], function () {
 			Route::get('/', 'Admin\MainController@index')->name('admin.index');
+			Route::resource('roles', 'Admin\RoleController');
 		});
 	});
 

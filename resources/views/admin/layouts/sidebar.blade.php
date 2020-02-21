@@ -7,13 +7,13 @@
 						<li class="">
 								<a href="javascript:;">
 										<i class="icon-home"></i>
-										<span class="title">Sub Menu</span>
+										<span class="title">Admin Menu</span>
 										<span class="selected"></span>
 										<span class="arrow open"></span>
 								</a>
 								<ul class="sub-menu">
 										<li class="active">
-											<a href="#"> <i class="icon-bar-chart"></i> Default Dashboard</a>
+											<a href="{{ route('roles.index') }}"> <i class="icon-bar-chart"></i> Manajemen Roles</a>
 										</li>
 										<li>
 												<a href="#"> <i class="icon-bulb"></i> New Dashboard #1</a>
