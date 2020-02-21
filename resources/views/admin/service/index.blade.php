@@ -9,7 +9,7 @@
 @endsection
 
 @section('title')
-	Manajemen Role
+	Manajemen Poli
 @endsection
 
 @section('content')
@@ -18,20 +18,26 @@
 	<div class="portlet light bordered">
 		<div class="portlet-title">
 			<div class="caption">
-				<span class="caption-subject bold uppercase"> Form Tambah Role </span>
+				<span class="caption-subject bold uppercase"> Form Tambah Poli </span>
 			</div>
 		</div>
 		<div class="portlet-body form">
-			<form action="{{ route('roles.store') }}" method="post">
+			<form action="{{ route('services.store') }}" method="post">
 				@csrf
 				<div class="form-body">
 					<div class="form-group form-md-line-input {{ $errors->has('name') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="text" name="name" id="name" class="form-control" required autofocus >
-						<label for="name">Nama Role :* </label>
+						<label for="name">Nama Poli :* </label>
+						<span class="help-block">{{ $errors->first('name') }}</span>
+					</div>
+					<br>
+					<div class="form-group form-md-line-input {{ $errors->has('Deskripsi') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+						<input type="text" name="description" id="description" class="form-control" required autofocus >
+						<label for="description">Deskripsi :* </label>
 						<span class="help-block">{{ $errors->first('name') }}</span>
 					</div>
 					<div class="form-actions noborder">
-						<button type="button" class="btn blue">Tambah Data Role</button>
+						<button type="submit" class="btn blue">Tambah Data Poli</button>
 						<button type="button" class="btn default">Reset Input</button>
 					</div>
 				</div>
@@ -44,7 +50,7 @@
 		<div class="portlet-title">
 			<div class="caption">
 				<span class="caption-subject bold uppercase">
-					Data Role
+					Data Poli
 				</span>
 			</div>
 		</div>
@@ -54,13 +60,24 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Nama Role</th>
+							<th>Nama Poli</th>
+							<th>Deskripsi</th>
 							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-						@forelse ($roles as $item)
-							
+						@php
+							$no = 1;
+						@endphp
+						@forelse ($service as $s)
+							<tr>
+								<td>{{ $no++ }}</td>
+								<td>{{ $s->name }}</td>
+								<td>{{ $s->description }}</td>
+								<td>
+									
+								</td>
+							</tr>
 						@empty
 							
 						@endforelse

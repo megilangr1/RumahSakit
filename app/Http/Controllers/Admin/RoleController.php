@@ -15,8 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-			$roles = Role::orderBy('created_at', 'DESC')->paginate(10);
-			return view('admin.roles.index', compact('roles'));
+        $roles = Role::orderBy('created_at', 'DESC')->paginate(10);
+        return view('admin.roles.index', compact('roles'));
     }
 
     /**
@@ -38,18 +38,18 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-					'name' => 'required|string|unique:roles,name'
-				]);
+            'name' => 'required|string|unique:roles,name'
+        ]);
 
-				try {
-					$roles = Role::firstOrCreate($request->only('name'));
+        try {
+            $roles = Role::firstOrCreate($request->only('name'));
 
-					session()->flash('success', 'Level Akses Berhasil di-Tambah');
-					return redirect(route('role.index'));
-				} catch (\Exception $e) {
-					session()->flash('error', 'Terjadi Kesalahan ! Error Storing Item (Code : xFS01)');
-					return redirect()->back();
-				}
+            session()->flash('success', 'Level Akses Berhasil di-Tambah');
+            return redirect(route('role.index'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan ! Error Storing Item (Code : xFS01)');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -74,7 +74,7 @@ class RoleController extends Controller
         try {
             $roles = Role::orderBy('created_at', 'DESC')->paginate(10);
             $edit = Role::findOrFail($id);
-					
+            
             return view('admin.roles.index', compact('roles','edit'));
         } catch (\Exception $e) {
             session()->flash('error', 'Terjadi Kesalahan !');

@@ -34,8 +34,17 @@
     <link href="{{ asset('') }}assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css"
         id="style_color" />
     <link href="{{ asset('') }}assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
-		<link rel="shortcut icon" href="favicon.ico" />
-		@yield('css')
+        <link rel="shortcut icon" href="favicon.ico" />
+    
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/global/plugins/select2/select2.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+    <!-- END PAGE LEVEL STYLES -->
+
+    @yield('css')
+    
 </head>
 
 <body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo page-container-bg-solid">
@@ -174,6 +183,23 @@
     <script src="{{ asset('') }}assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
     <script src="{{ asset('') }}assets/admin/pages/scripts/index.js" type="text/javascript"></script>
     <script src="{{ asset('') }}assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+    
+<script src="../../assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="../../assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="../../assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+<script src="../../assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+<script src="../../assets/admin/pages/scripts/table-advanced.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="{{ asset('') }}assets/admin/pages/scripts/table-advanced.js"></script>
+
+    <!-- END PAGE LEVEL PLUGINS -->
+
     <script>
         jQuery(document).ready(function () {
             Metronic.init(); // init metronic core componets	
@@ -183,6 +209,7 @@
             Index.init();
             Index.initDashboardDaterange();
             Tasks.initDashboardWidget();
+            TableAdvanced.init();
         });
 
 		</script>
