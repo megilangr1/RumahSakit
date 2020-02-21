@@ -8,10 +8,6 @@ class BaseController extends Controller
 {
 		public function index()
 		{
-			if (auth()->check()) {
-				return view('welcome');
-			} else {
-				return redirect(route('login'));
-			}
+			return view('frontend.main');
 		}
 }
