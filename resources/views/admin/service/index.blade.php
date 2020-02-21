@@ -74,8 +74,14 @@
 								<td>{{ $no++ }}</td>
 								<td>{{ $s->name }}</td>
 								<td>{{ $s->description }}</td>
-								<td>
-									
+								<td width="20%" align="center">
+									<form action="{{ route('services.destroy', $s->id) }}" method="post">
+										@csrf
+										@method('DELETE')  
+										<button type="submit" class="btn btn-danger btn-xs">
+											Hapus
+										</button> 
+									</form>
 								</td>
 							</tr>
 						@empty
