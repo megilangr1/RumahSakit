@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
 			
 			$admin = Admin::firstOrCreate([
 				'user_id' => $user->id,
-				'name' => 'Maesa Raga Celana',
+				'name' => 'Maesaraga Kelana',
 				'date_of_birth' => '2002-11-24',
 				'phone' => '082125648834',
 				'address' => 'Cikiray',
