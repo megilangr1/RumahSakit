@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Service;
+
 
 class ServiceController extends Controller
 {
@@ -14,11 +16,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        if (auth()->check()) {
-            return view('welcome');
-        } else {
-            return redirect(route('login'));
-        }
+        $service = Service::orderBy('created_at', 'DESC')->paginate(10);
+        return view('admin.service', compact('service'));
     }
 
     /**
@@ -39,7 +38,20 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'description' => 'required|string'
+        ]);
+
+        try {
+            $service = Service::firstOrCreate($request->only('name', 'description'));
+
+            session()->flash('success', 'Data Berhasil Ditambahkan !');
+            return redirect(route('service'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -61,7 +73,15 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $service = Service::orderBy('created_at', 'DESC')->paginate(10);
+            $edit = Service::findOrFail($id);
+
+            return view('admin.service', compact('service', 'edit'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -84,6 +104,14 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $service = Service::findOrFail($id);
+            $service->delete();
+
+            session()->flash('success', 'Data Berhasil di-Hapus !');
+            return redirect(route('service'));
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
     }
 }

@@ -72,14 +72,14 @@ class RoleController extends Controller
     public function edit($id)
     {
         try {
-					$roles = Role::orderBy('created_at', 'DESC')->paginate(10);
-					$edit = Role::findOrFail($id);
+            $roles = Role::orderBy('created_at', 'DESC')->paginate(10);
+            $edit = Role::findOrFail($id);
 					
-					return view('admin.roles.index', compact('roles','edit'));
-				} catch (\Exception $e) {
-					session()->flash('error', 'Terjadi Kesalahan !');
-					return redirect()->back();
-				}
+            return view('admin.roles.index', compact('roles','edit'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -103,14 +103,14 @@ class RoleController extends Controller
     public function destroy($id)
     {
         try {
-					$roles = Role::findOrFail($id);
-					$roles->delete();
+            $roles = Role::findOrFail($id);
+            $roles->delete();
 
-					session()->flash('success', 'Data Berhasil di-Hapus !');
-					return redirect(route('role.index'));
-				} catch (\Exception $e) {
-					session()->flash('error', 'Terjadi Kesalahan !');
-					return redirect()->back();
-				}
+            session()->flash('success', 'Data Berhasil di-Hapus !');
+            return redirect(route('role.index'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
 }
