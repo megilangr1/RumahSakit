@@ -31,8 +31,8 @@
 						<span class="help-block">{{ $errors->first('name') }}</span>
 					</div>
 					<div class="form-actions noborder">
-						<button type="button" class="btn blue">Tambah Data Role</button>
-						<button type="button" class="btn default">Reset Input</button>
+						<button type="submit" class="btn btn-success">Tambah Data Role</button>
+						<button type="reset" class="btn btn-danger">Reset Input</button>
 					</div>
 				</div>
 			</form>
@@ -60,9 +60,25 @@
 					</thead>
 					<tbody>
 						@forelse ($roles as $item)
-							
+							<tr>
+								<td>{{ $loop->iteration }}</td>
+								<td>{{ $item->name }}</td>
+								<td width="20%" align="center">
+									<form action="{{ route('roles.destroy', $item->id) }}" method="post">
+										@csrf
+										@method('DELETE')  
+										<button type="submit" class="btn btn-danger btn-xs">
+											Hapus
+										</button> 
+									</form>
+								</td>
+							</tr>
 						@empty
-							
+							<tr>
+								<td colspan="3" align="center">
+									Belum Ada Data Role
+								</td>
+							</tr>
 						@endforelse
 					</tbody>
 				</table>
