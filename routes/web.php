@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::get('/', 'Admin\MainController@index')->name('admin.index');
 			Route::resource('roles', 'Admin\RoleController');
 			Route::resource('services', 'Admin\ServiceController');
+			Route::resource('doctors', 'Admin\DoctorsController');
 		});
 	});
 

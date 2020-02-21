@@ -16,7 +16,10 @@
 						<a href="{{ route('roles.index') }}"> <i class="fa fa-cogs"></i> Manajemen Roles</a>
 					</li>
 					<li class="{{ Request::is('admin/roles*') ? 'active':'' }}">
-						<a href="{{ route('services.index') }}"> <i class="fa fa-cogs"></i> Services</a>
+						<a href="{{ route('services.index') }}"> <i class="fa fa-cogs"></i> Manajemen Poli</a>
+					</li>
+					<li class="{{ Request::is('admin/roles*') ? 'active':'' }}">
+						<a href="{{ route('doctors.index') }}"> <i class="fa fa-cogs"></i> Manajemen Dokter</a>
 					</li>
 					<li>
 						<a href="#"> <i class="fa fa-cogs"></i> New Dashboard #1</a>
