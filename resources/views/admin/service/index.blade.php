@@ -31,10 +31,10 @@
 						<span class="help-block">{{ $errors->first('name') }}</span>
 					</div>
 					<br>
-					<div class="form-group form-md-line-input {{ $errors->has('Deskripsi') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+					<div class="form-group form-md-line-input {{ $errors->has('description') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="text" name="description" id="description" class="form-control" required autofocus >
 						<label for="description">Deskripsi :* </label>
-						<span class="help-block">{{ $errors->first('name') }}</span>
+						<span class="help-block">{{ $errors->first('description') }}</span>
 					</div>
 					<div class="form-actions noborder">
 						<button type="submit" class="btn blue">Tambah Data Poli</button>
