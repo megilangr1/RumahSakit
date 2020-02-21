@@ -96,7 +96,7 @@
 												</li>												
                         <li>
                             <a href="{{ route('admin.index') }}">Halaman Utama</a>
-                        </li>
+												</li>
                     </ul>
                 </div>
                 <h3 class="page-title"> @yield('title') <small>@yield('small-title')</small> </h3>
