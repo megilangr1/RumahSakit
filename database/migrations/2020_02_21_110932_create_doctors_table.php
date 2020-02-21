@@ -14,15 +14,17 @@ class CreateDoctorsTable extends Migration
     public function up()
     {
         Schema::create('doctors', function (Blueprint $table) {
-						$table->bigIncrements('id');
-						$table->unsignedBigInteger('user_id');
-						$table->foreign('user_id')->references('id')->on('users');
-						$table->string('nip', 18)->unique();
-						$table->string('name');
-						$table->date('date_of_birth');
-						$table->string('phone');
-						$table->text('address');
-						$table->text('photo')->nullable();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('nip', 18)->unique();
+            $table->string('name');
+            $table->unsignedBigInteger('service_id');
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->date('date_of_birth');
+            $table->string('phone');
+            $table->text('address');
+            $table->text('photo')->nullable();
             $table->timestamps();
         });
     }
