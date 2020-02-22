@@ -70,6 +70,23 @@ class UsersController extends Controller
         }
     }
 
+    public function verifEmail($token)
+    {
+        try {
+            $user = User::where('remember_token', '=', $token)->firstOrFail();
+            $user->update([
+                'remember_token' => null,
+                'email_verified_at' => now()
+            ]);
+            
+            $services = Service::orderBy('name', 'ASC')->get();
+
+            return view('frontend.pages.complete', compact('services'));
+        } catch (\Exception $e) {
+            return redirect(url('/'));
+        }
+    }
+
     public function rawatjalan()
     {
         if(auth()->check() == false) {
