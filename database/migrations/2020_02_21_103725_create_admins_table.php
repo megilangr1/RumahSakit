@@ -14,14 +14,14 @@ class CreateAdminsTable extends Migration
     public function up()
     {
         Schema::create('admins', function (Blueprint $table) {
-						$table->bigIncrements('id');
-						$table->unsignedBigInteger('user_id');
-						$table->foreign('user_id')->references('id')->on('users');
-						$table->string('name');
-						$table->date('date_of_birth');
-						$table->string('phone');
-						$table->text('address');
-						$table->text('photo')->nullable();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('name');
+            $table->date('date_of_birth');
+            $table->string('phone');
+            $table->text('address');
+            $table->text('photo')->nullable();
             $table->timestamps();
         });
     }

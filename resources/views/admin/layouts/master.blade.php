@@ -101,12 +101,12 @@
                     <ul class="page-breadcrumb">
                         <li>
                             <i class="fa fa-home"></i>
-														<a href="javascript:void(0)">Admin</a>
-														<i class="fa fa-angle-right"></i>
-												</li>												
+                                <a href="javascript:void(0)">Admin</a>
+                                <i class="fa fa-angle-right"></i>
+                        </li>												
                         <li>
                             <a href="{{ route('admin.index') }}">Halaman Utama</a>
-												</li>
+                        </li>
                     </ul>
                 </div>
                 <h3 class="page-title"> @yield('title') <small>@yield('small-title')</small> </h3>

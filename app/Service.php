@@ -14,4 +14,9 @@ class Service extends Model
     ];
 
     public $timestamp = true;
+
+    public function dokter()
+    {
+        return $this->belongsTo('App\Doctor');
+    }
 }
