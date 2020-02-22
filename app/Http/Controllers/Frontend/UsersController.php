@@ -42,9 +42,11 @@ class UsersController extends Controller
         ]);
 
         try {
+            $token = md5(now());
             $user = User::firstOrCreate([
                 'email' => $request->email,
-                'password' => bcrypt($request->password)
+                'password' => bcrypt($request->password),
+                'remember_token' => $token
             ]);
             $user->assignRole('pasien');
 
@@ -58,7 +60,7 @@ class UsersController extends Controller
                 'photo' => null
             ]);
 
-            Mail::to($user->email)->send(new VerifyPatient($user));
+            $mail = Mail::to($request->email)->send(new VerifyPatient($user, $token));
 
             session()->flash('success', 'Berhasil Melakukan Registrasi ! Silahkan Lanjutkan dengan Cara Mengkonfirmasi E-Mail !');
             return redirect(route('user.register'));
@@ -66,7 +68,6 @@ class UsersController extends Controller
             session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Dalam Beberapa Saat !');
             return redirect()->back();
         }
-        dd($request->all());
     }
 
     public function rawatjalan()

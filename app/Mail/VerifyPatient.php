@@ -11,16 +11,17 @@ class VerifyPatient extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $user, $token;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $token)
     {
         $this->user = $user;
+        $this->token = $token;
     }
 
     /**
@@ -31,7 +32,9 @@ class VerifyPatient extends Mailable
     public function build()
     {
         return $this->view('mail.verif')->with([
-            'name' => $this->user->name
+            'name' => $this->user->name,
+            'token' => $this->token,
+            'url' => env('APP_URL'),
         ]);
     }
 }

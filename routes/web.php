@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/layanan/{service}', 'Frontend\ServiceController@show')->name('service.detail');
 
-Route::get('/users', 'Frontend/UsersController@index')->name('user');
+Route::get('/users', 'Frontend\UsersController@index')->name('user');
 Route::get('/users/login', 'Frontend\UsersController@login')->name('user.login');
 Route::get('/users/register', 'Frontend\UsersController@register')->name('user.register');
 Route::post('/users/register', 'Frontend\UsersController@regist')->name('user.regist');
