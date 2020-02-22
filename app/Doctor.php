@@ -12,7 +12,7 @@ class Doctor extends Model
         'user_id',
         'nip',
         'name',
-        'service',
+        'service_id',
         'date_of_birth',
         'phone',
         'address',
