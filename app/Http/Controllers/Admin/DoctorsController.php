@@ -17,7 +17,7 @@ class DoctorsController extends Controller
      */
     public function index()
     {
-        $doctor = Doctor::orderBy('created_at', 'DESC');
+        $doctor = Doctor::orderBy('created_at', 'DESC')->get();
         $service = Service::orderBy('created_at', 'DESC')->get();
         return view('admin.doctors.index', compact('doctor', 'service'));
     }
@@ -53,14 +53,17 @@ class DoctorsController extends Controller
         ]);
 
         try {
-            $user = User::firstOrCreate($request->only('email', 'password'));
+            $user = User::firstOrCreate([
+                'email' => $request->email,
+                'password' => bcrypt($request->password)
+            ]);
             $user->assignRole('dokter');
 
-            // $path = public_path('images/photo');
-            // $files = $request->photo;
-            // $file_name = time().'.'.$files->getClientOriginalName();
-            // $files->move($path, $file_name);
-            // $input = $request->all();
+            $path = public_path('images/photo');
+            $files = $request->photo;
+            $file_name = time().'.'.$files->getClientOriginalName();
+            $files->move($path, $file_name);
+            $input = $request->all();
 
             Doctor::firstOrCreate([
                 'user_id' => $user->id,
@@ -68,9 +71,9 @@ class DoctorsController extends Controller
                 'name' => $request->nama,
                 'service_id' => $request->service,
                 'date_of_birth' => $request->dob,
-                'phone' => $request->phone,
+                'phone' => $request->noHp,
                 'address' => $request->address,
-                'photo' => $request->photo
+                'photo' => $file_name
             ]);
 
             session()->flash('success', 'Data Berhasil Ditambahkan !');
@@ -100,7 +103,16 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $doctor = Doctor::orderBy('created_at', 'DESC')->get();
+            $edit = Doctor::findOrFail($id);
+
+            return view('admin.doctors.edit', compact('doctor', 'edit'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan');
+            return redirect()->back();
+        }
+
     }
 
     /**

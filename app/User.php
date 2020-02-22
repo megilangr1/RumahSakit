@@ -17,7 +17,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+<<<<<<< HEAD
+        'email', 'password',
+=======
 				'email', 'password', 'remember_token'
+>>>>>>> 69480620d594708f0e79d7c7542c897ec696f96f
     ];
 
     /**
@@ -38,13 +42,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
 		];
 		
-		public function admin()
-		{
-			return $this->hasOne('App\Admin');
-		}
+    public function admin()
+    {
+        return $this->hasOne('App\Admin');
+    }
 
-		public function dokter()
-		{
-			return $this->hasOne('App\Dokter');
-		}
+    public function dokter()
+    {
+        return $this->hasOne('App\Dokter');
+    }
 }

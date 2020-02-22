@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $table = 'doctors';
-    protected $primarKey = 'id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
         'nip',
@@ -20,4 +20,14 @@ class Doctor extends Model
     ];
 
     public $timestamp = true;
+
+    public function login()
+    {
+        return $this->hasOne('App\User', 'id');
+    }
+
+    public function service()
+    {
+        return $this->hasOne('App\Service', 'id');
+    }
 }
