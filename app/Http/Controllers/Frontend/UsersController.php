@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\VerifyPatient;
 use App\Patient;
 use App\Service;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
@@ -55,6 +57,8 @@ class UsersController extends Controller
                 'address' => $request->address,
                 'photo' => null
             ]);
+
+            Mail::to($user->email)->send(new VerifyPatient($user));
 
             session()->flash('success', 'Berhasil Melakukan Registrasi ! Silahkan Lanjutkan dengan Cara Mengkonfirmasi E-Mail !');
             return redirect(route('user.register'));

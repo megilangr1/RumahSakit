@@ -72,7 +72,7 @@
         <div class="col-md-12 col-sm-12"> 
           <fieldset>
             <div class="form-group">
-              <label for="email" class="col-lg-2 control-label">Email : <span class="require">*</span></label>
+              <label for="email" class="col-lg-2 control-label">E-mail : <span class="require">*</span></label>
               <div class="col-lg-10">
                 <input type="email" class="form-control" id="email" name="email" required value="{{ old('email') }}">
                 <p style="margin: 0px !important; color: red;">
