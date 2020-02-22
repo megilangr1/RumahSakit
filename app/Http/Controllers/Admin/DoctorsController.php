@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Doctor;
 use App\User;
+use App\Service;
 
 class DoctorsController extends Controller
 {
@@ -17,7 +18,8 @@ class DoctorsController extends Controller
     public function index()
     {
         $doctor = Doctor::orderBy('created_at', 'DESC');
-        return view('admin.doctors.index', compact('doctor'));
+        $service = Service::orderBy('created_at', 'DESC')->get();
+        return view('admin.doctors.index', compact('doctor', 'service'));
     }
 
     /**
@@ -38,16 +40,15 @@ class DoctorsController extends Controller
      */
     public function store(Request $request)
     {
-            
-
         $this->validate($request, [
-            'nip' => 'required|numeric|unique:users',
-            'name' => 'required|string',
-            'date_of_birth' => 'date',
-            'phone' => 'required|numeric',
+            'nip' => 'required|numeric|unique:doctors,nip',
+            'nama' => 'required|string',
+            'service' => 'required|string',
+            'dob' => 'required|date',
+            'noHp' => 'required|numeric',
             'address' => 'required|string',
-            'photo' => 'required', 'image', 'mimes:jpeg,png,jpg,jfif', 'max:5000',
-            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'photo' => 'required', 'mimes:jpeg,png,jpg',
+            'email' => 'required', 'string', 'email', 'max:255', 'unique:users,email',
             'password' => 'required', 'string', 'min:4',
         ]);
 
@@ -55,14 +56,21 @@ class DoctorsController extends Controller
             $user = User::firstOrCreate($request->only('email', 'password'));
             $user->assignRole('dokter');
 
-            $doctor = Doctor::firstOrCreate([
+            // $path = public_path('images/photo');
+            // $files = $request->photo;
+            // $file_name = time().'.'.$files->getClientOriginalName();
+            // $files->move($path, $file_name);
+            // $input = $request->all();
+
+            Doctor::firstOrCreate([
                 'user_id' => $user->id,
                 'nip' => $request->nip,
                 'name' => $request->nama,
+                'service_id' => $request->service,
                 'date_of_birth' => $request->dob,
                 'phone' => $request->phone,
                 'address' => $request->address,
-                'photo' => null
+                'photo' => $request->photo
             ]);
 
             session()->flash('success', 'Data Berhasil Ditambahkan !');
