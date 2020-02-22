@@ -70,6 +70,11 @@ class UsersController extends Controller
         }
     }
 
+    public function verifEmail($token)
+    {
+        dd($token);
+    }
+
     public function rawatjalan()
     {
         if(auth()->check() == false) {
