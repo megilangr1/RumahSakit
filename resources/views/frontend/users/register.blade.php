@@ -19,25 +19,53 @@
             <div class="form-group">
               <label for="nik" class="col-lg-4 control-label">NIK : <span class="require">*</span></label>
               <div class="col-lg-8">
-                <input type="text" class="form-control" id="nik">
+                <input type="text" class="form-control" id="nik" name="nik" required autofocus>
               </div>
             </div>
             <div class="form-group">
-              <label for="lastname" class="col-lg-4 control-label">Nama Lengkap <span class="require">*</span></label>
+              <label for="name" class="col-lg-4 control-label">Nama Lengkap : <span class="require">*</span></label>
               <div class="col-lg-8">
-                <input type="text" class="form-control" id="lastname">
+                <input type="text" class="form-control" id="name" name="name" required>
               </div>
             </div>
+            <div class="form-group">
+              <label for="date_of_birth" class="col-lg-4 control-label">Tanggal Lahir : <span class="require">*</span></label>
+              <div class="col-lg-8">
+                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+              </div>
+            </div> 
+          </fieldset>
+        </div> 
+        <div class="col-md-6 col-sm-6"> 
+          <fieldset>
+            <div class="form-group">
+              <label for="email" class="col-lg-4 control-label">Nomor Telfon : *<span class="require">*</span></label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" id="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" id="password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="confirm-password" class="col-lg-4 control-label">Confirm password <span class="require">*</span></label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" id="confirm-password">
+              </div>
+            </div>
+          </fieldset> 
+        </div> 
+        <div class="col-md-6 col-sm-6"> 
+          <fieldset>
             <div class="form-group">
               <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
               <div class="col-lg-8">
                 <input type="text" class="form-control" id="email">
               </div>
             </div>
-          </fieldset>
-        </div> 
-        <div class="col-md-6 col-sm-6"> 
-          <fieldset>
             <div class="form-group">
               <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
               <div class="col-lg-8">
