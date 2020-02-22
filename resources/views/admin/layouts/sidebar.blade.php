@@ -4,7 +4,7 @@
 			<li class="start {{ Request::is('admin') ? 'active':'' }}">
 					<a href="{{ route('admin.index') }}"><i class="fa fa-home"></i> <span class="title"> Halaman Utama </span></a>
 			</li>
-			<li class="{{ Request::is('admin/roles*') ? 'active':'' }}">
+			<li class="{{ Request::is('admin/roles*'|| 'admin/services*') ? 'active':'' }}">
 				<a href="javascript:;">
 					<i class="icon-home"></i>
 					<span class="title">Admin Menu</span>
@@ -15,7 +15,7 @@
 					<li class="{{ Request::is('admin/roles*') ? 'active':'' }}">
 						<a href="{{ route('roles.index') }}"> <i class="fa fa-cogs"></i> Manajemen Roles</a>
 					</li>
-					<li class="{{ Request::is('admin/roles*') ? 'active':'' }}">
+					<li class="{{ Request::is('admin/services*') ? 'active':'' }}">
 						<a href="{{ route('services.index') }}"> <i class="fa fa-cogs"></i> Manajemen Poli</a>
 					</li>
 					<li class="{{ Request::is('admin/roles*') ? 'active':'' }}">
