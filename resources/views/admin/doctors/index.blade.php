@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="portlet-body form">
-			<form action="{{ route('services.store') }}" method="post" enctype="multipart/form-data">
+			<form action="{{ route('doctors.store') }}" method="post" enctype="multipart/form-data">
 				@csrf
 				<div class="form-body">
 					<div class="form-group form-md-line-input {{ $errors->has('nip') ? 'has-error':'' }}" style="margin-bottom: 10px;">
@@ -60,21 +60,22 @@
 						<label for="photo">Foto :* </label>
 						<span class="help-block">{{ $errors->first('photo') }}</span>
                     </div>
-                    <br>
-                    <div class="form-group form-md-line-input {{ $errors->has('email') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+					<br>
+					<div class="form-group form-md-line-input {{ $errors->has('email') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="email" name="email" id="email" class="form-control" required autofocus >
 						<label for="email">Email :* </label>
 						<span class="help-block">{{ $errors->first('email') }}</span>
-                    </div>
-                    <br>
-                    <div class="form-group form-md-line-input {{ $errors->has('password') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+					</div>
+					<br>
+					<div class="form-group form-md-line-input {{ $errors->has('password') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="password" name="password" id="password" class="form-control" required autofocus >
 						<label for="password">Password :* </label>
 						<span class="help-block">{{ $errors->first('password') }}</span>
-                    </div>
-                    <br>
+					</div>
+					<br>
+
 					<div class="form-actions noborder">
-						<button type="submit" class="btn blue">Tambah Data Poli</button>
+						<button type="submit" class="btn blue">Tambah Data Dokter</button>
 						<button type="button" class="btn default">Reset Input</button>
 					</div>
 				</div>
