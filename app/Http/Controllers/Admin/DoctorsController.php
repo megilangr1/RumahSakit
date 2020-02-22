@@ -105,9 +105,10 @@ class DoctorsController extends Controller
     {
         try {
             $doctor = Doctor::orderBy('created_at', 'DESC')->get();
+            $service = Service::orderBy('created_at', 'DESC')->get();
             $edit = Doctor::findOrFail($id);
 
-            return view('admin.doctors.edit', compact('doctor', 'edit'));
+            return view('admin.doctors.edit', compact('doctor', 'edit', 'service'));
         } catch (\Exception $e) {
             session()->flash('error', 'Terjadi Kesalahan');
             return redirect()->back();
@@ -124,7 +125,33 @@ class DoctorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+
+            $doctor = Doctor::findOrFail($id);
+
+            if ($request->hasFile('photo')) {
+                $path = public_path('images/photo');
+                $files = $request->photo;
+                $file_name = time().'.'.$files->getClientOriginalName();
+                $files->move($path, $file_name);
+                $input = $request->all();
+            }
+
+            $doctor->update([
+                'nip' => $request->nip,
+                'name' => $request->nama,
+                'service_id' => $request->service,
+                'date_of_birth' => $request->dob,
+                'phone' => $request->noHp,
+                'address' => $request->address,
+                'photo' => $file_name
+            ]);
+            session()->flash('success', 'Data Berhasil Ditambahkan !');
+            return redirect(route('doctors.index'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan');
+            return redirect()->back();
+        }
     }
 
     /**

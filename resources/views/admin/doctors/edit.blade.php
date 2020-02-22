@@ -21,8 +21,9 @@
 			</div>
 		</div>
 		<div class="portlet-body form">
-			<form action="{{ route('doctors.edit') }}" method="post" enctype="multipart/form-data">
-				@csrf
+			<form action="{{ route('doctors.update', $edit->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 				<div class="form-body">
 					<div class="form-group form-md-line-input {{ $errors->has('nip') ? 'has-error':'error' }}" style="margin-bottom: 10px;">
 						<input value="{{ $edit->nip }}" type="numeric" name="nip" id="nip" class="form-control" required autofocus >
@@ -70,12 +71,7 @@
 						<span class="help-block">{{ $errors->first('photo') }}</span>
                     </div>
 					<br>
-					<div class="form-group form-md-line-input {{ $errors->has('email') ? 'has-error':'error' }}" style="margin-bottom: 10px;">
-						<input value="{{ $edit->email }}" type="email" name="email" id="email" class="form-control" required autofocus >
-						<label for="email">Email :* </label>
-						<span class="help-block">{{ $errors->first('email') }}</span>
-					</div>
-					<br>
+					
 					<div class="form-group form-md-line-input {{ $errors->has('password') ? 'has-error':'error' }}" style="margin-bottom: 10px;">
 						<input value="{{ $edit->password }}" type="password" name="password" id="password" class="form-control" required autofocus >
 						<label for="password">Password :* </label>
@@ -84,7 +80,7 @@
 					<br>
 
 					<div class="form-actions noborder">
-						<button type="submit" class="btn blue">Tambah Data Dokter</button>
+						<button type="submit" class="btn blue">Edit Data Dokter</button>
 						<button type="button" class="btn default">Reset Input</button>
 					</div>
 				</div>

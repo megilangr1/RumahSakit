@@ -126,15 +126,15 @@
 								<td>{{ $no++ }}</td>
 								<td>{{ $d->nip }}</td>
 								<td>{{ $d->name }}</td>
-								<td>{{ $d->service_id }}</td>
+								<td>{{ $d->service->name }}</td>
 								<td>{{ $d->date_of_birth }}</td>
 								<td>{{ $d->phone }}</td>
 								<td>{{ $d->address }}</td>
 								<td><img src="{{ asset('') }}images/photo/{{ $d->photo }}" width="70px" height="70px" alt=""></td>
 								<td width="20%" colspan="2">
-									<a href="{{ route('services.edit', $s->id) }}" class="btn btn-warning btn-xs">Edit</a>
+									<a href="{{ route('doctors.edit', $d->id) }}" class="btn btn-warning btn-xs">Edit</a>
 
-									<form action="{{ route('services.destroy', $s->id) }}" method="post">
+									<form action="{{ route('doctors.destroy', $s->id) }}" method="post">
 										@csrf
 										@method('DELETE')  
 										<button type="submit" class="btn btn-danger btn-xs">

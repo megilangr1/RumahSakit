@@ -16,7 +16,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $service = Service::orderBy('created_at', 'DESC')->get()->paginate(10);
+        $service = Service::orderBy('created_at', 'DESC')->get();
         return view('admin.service.index', compact('service'));
     }
 
@@ -74,10 +74,10 @@ class ServiceController extends Controller
     public function edit($id)
     {
         try {
-            $service = Service::orderBy('created_at', 'DESC')->paginate(10);
+            $service = Service::orderBy('created_at', 'DESC')->get();
             $edit = Service::findOrFail($id);
 
-            return view('admin.service', compact('service', 'edit'));
+            return view('admin.service.edit', compact('service', 'edit'));
         } catch (\Exception $e) {
             session()->flash('error', 'Terjadi Kesalahan !');
             return redirect()->back();
@@ -93,7 +93,22 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $service = Service::findOrFail($id);
+
+            $service->update([
+                'name' => $request->name,
+                'description' => $request->description
+            ]);
+
+            session()->flash('success', 'Data Berhasil Ditambahkan !');
+            return redirect(route('services.index'));
+        } catch (\Exception $e) {
+            dd($e);
+            session()->flash('error', 'Terjadi Kesalahan');
+            return redirect()->back();
+        }
+
     }
 
     /**

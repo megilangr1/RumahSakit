@@ -74,7 +74,9 @@
 								<td>{{ $no++ }}</td>
 								<td>{{ $s->name }}</td>
 								<td>{{ $s->description }}</td>
-								<td width="20%" align="center">
+								<td width="20%" colspan="2">
+									<a href="{{ route('services.edit', $s->id) }}" class="btn btn-warning btn-xs">Edit</a>
+
 									<form action="{{ route('services.destroy', $s->id) }}" method="post">
 										@csrf
 										@method('DELETE')  
