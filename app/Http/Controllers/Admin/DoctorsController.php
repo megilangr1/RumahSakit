@@ -38,27 +38,31 @@ class DoctorsController extends Controller
      */
     public function store(Request $request)
     {
+            
+
         $this->validate($request, [
-            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
-            'password' => 'required', 'string', 'min:8', 'confirmed',
             'nip' => 'required|numeric|unique:users',
             'name' => 'required|string',
             'date_of_birth' => 'date',
             'phone' => 'required|numeric',
             'address' => 'required|string',
-            'photo' => 'required', 'image', 'mimes:jpeg,png,jpg', 'max:5000'
+            'photo' => 'required', 'image', 'mimes:jpeg,png,jpg,jfif', 'max:5000',
+            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'password' => 'required', 'string', 'min:4',
         ]);
 
         try {
             $user = User::firstOrCreate($request->only('email', 'password'));
+            $user->assignRole('dokter');
+
             $doctor = Doctor::firstOrCreate([
                 'user_id' => $user->id,
-                'service_id' => $user->id,
+                'nip' => $request->nip,
                 'name' => $request->nama,
-                'date_of_birth' =>  $request->dob,
-                'phone' => $request->noHp,
+                'date_of_birth' => $request->dob,
+                'phone' => $request->phone,
                 'address' => $request->address,
-                'photo' => $request->photo
+                'photo' => null
             ]);
 
             session()->flash('success', 'Data Berhasil Ditambahkan !');
