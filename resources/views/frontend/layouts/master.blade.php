@@ -149,11 +149,11 @@
           </div>
 
           <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>Our Contacts</h2>
+            <h2>Alamat Kami</h2>
             <address class="margin-bottom-40">
               Jl. Bhayangkara / Jl. Aminta Asmali Trip 59 - A 166 <br>
               43112 Sukabumi <br>
-              West Java - Indonesia <br> 
+              Jawa Barat - Indonesia <br> 
             </address> 
           </div>
 
