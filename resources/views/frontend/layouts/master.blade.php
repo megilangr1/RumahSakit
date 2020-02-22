@@ -44,7 +44,7 @@
                 <div class="col-md-12 col-sm-12 additional-shop-info">
                     <ul class="list-unstyled list-inline">
                         <li><i class="fa fa-phone"></i><span>0226-229207</span></li>
-                        <li><i class="fa fa-envelope-o"></i><span>rumahsakit@bhayangkara.com</span></li>
+                        <li><i class="fa fa-envelope-o"></i><span>rs.bhayangkara@sukabumi.com</span></li>
                     </ul>
                 </div> 
             </div>
@@ -58,17 +58,19 @@
 
         <div class="header-navigation pull-right font-transform-inherit">
           <ul>
-            <li><a href="{{ url('/') }}" target="_blank">Halaman Utama</a></li>
+            <li><a href="{{ url('/') }}">Halaman Utama</a></li>
 
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                Pelayanan  
+                Layanan Rumah Sakit
               </a>
                 
               <ul class="dropdown-menu">
-                <li><a href="#">Poli Gami !</a></li>
+                @foreach ($services as $item)
+                  <li><a href="{{ route('service.detail', str_replace(' ','-', $item->name)) }}">{{ $item->name }}</a></li>                    
+                @endforeach
                 
-                <li class="dropdown-submenu">
+                {{-- <li class="dropdown-submenu">
                   <a href="index.html">Multi level <i class="fa fa-angle-right"></i></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="index.html">Second Level Link</a></li>
@@ -85,22 +87,12 @@
                       </ul>
                     </li>
                   </ul>
-                </li>
+                </li> --}}
               </ul>
             </li> 
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                Blog  
-              </a>
-                
-              <ul class="dropdown-menu">
-                <li><a href="blog.html">Blog Page</a></li>
-                <li><a href="blog-item.html">Blog Item</a></li>
-              </ul>
-            </li>
+            <li><a href="#">Dokter Kami</a></li>
 
-            <li><a href="#">Masuk</a></li>
-            <li><a href="#">Daftar</a></li>
+            <li><a href="{{ route('rawat.jalan') }}">Pendaftaran Rawat Jalan</a></li> 
 
             <li class="menu-search">
               <span class="sep"></span>
@@ -121,6 +113,7 @@
       </div>
     </div>
 
+    @if (Request::is('/')) 
     <div class="page-slider margin-bottom-40">
       <div class="fullwidthbanner-container revolution-slider">
         <div class="fullwidthabnner">
@@ -137,34 +130,12 @@
           </div>
         </div>
     </div>
+    @endif
 
     <div class="main">
       <div class="container">
         <div class="row service-box margin-bottom-40">
-          <div class="col-md-4 col-sm-4">
-            <div class="service-box-heading">
-              <em><i class="fa fa-location-arrow blue"></i></em>
-              <span>Visi : </span>
-            </div>
-            <p>Mewujudkan impian orang sakit menjadi sehat serta tidak sakit-sakitan lagi. </p>
-          </div>
-          <div class="col-md-4 col-sm-4">
-            <div class="service-box-heading">
-              <em><i class="fa fa-check red"></i></em>
-              <span>Misi : </span>
-            </div>
-            <p style="margin-bottom: 4px;">1. Menyediakan fasilitas terbaik untuk orang sakit.</p>
-            <p style="margin-bottom: 4px;">2. Memberikan pelayanan yang baik dan bermutu serta berorientasi pada keselamatan pasien.</p>
-            <p style="margin-bottom: 4px;">3. Mengembangkan SDM yg profesional serta sarana & prasarana yang berkualitas.</p>
-
-          </div>
-          <div class="col-md-4 col-sm-4">
-            <div class="service-box-heading">
-              <em><i class="fa fa-compress green"></i></em>
-              <span>Rumah Sakit Bhayangkara</span>
-            </div>
-            <p>Disini kami menyembuhkan orang sakit, supaya tidak sakit-sakitan lagi. Kami akan menyediakan fasilitas kesehatan yang sangat terbaru dan memperioritaskan kesehatan pasien. Berobatlah di Rumah Sakit Bhayangkara</p>
-          </div>
+          @yield('content')
         </div>
       </div>
     </div>

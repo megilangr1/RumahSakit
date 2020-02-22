@@ -17,6 +17,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/layanan/{service}', 'Frontend\ServiceController@show')->name('service.detail');
+
+Route::get('/users', 'Frontend/UsersController@index')->name('user');
+Route::get('/users/login', 'Frontend\UsersController@login')->name('user.login');
+Route::get('/users/register', 'Frontend\UsersController@register')->name('user.register');
+
+Route::get('/rawat-jalan', 'Frontend\UsersController@rawatjalan')->name('rawat.jalan');
+
 Route::group(['middleware' => ['auth']], function () {
 	Route::group(['prefix' => 'admin'], function () {
 		Route::group(['middleware' => ['role:admin']], function () {
@@ -25,7 +33,5 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::resource('services', 'Admin\ServiceController');
 			Route::resource('doctors', 'Admin\DoctorsController');
 		});
-	});
-
-
+	}); 
 });
