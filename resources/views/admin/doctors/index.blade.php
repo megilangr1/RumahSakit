@@ -134,7 +134,7 @@
 								<td width="20%" colspan="2">
 									<a href="{{ route('doctors.edit', $d->id) }}" class="btn btn-warning btn-xs">Edit</a>
 
-									<form action="{{ route('doctors.destroy', $s->id) }}" method="post">
+									<form action="{{ route('doctors.destroy', $d->id) }}" method="post">
 										@csrf
 										@method('DELETE')  
 										<button type="submit" class="btn btn-danger btn-xs">

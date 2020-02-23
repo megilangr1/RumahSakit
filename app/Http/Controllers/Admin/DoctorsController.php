@@ -127,9 +127,7 @@ class DoctorsController extends Controller
     public function update(Request $request, $id)
     {
         try {
-
             $doctor = Doctor::findOrFail($id);
-
             if ($request->hasFile('photo')) {
                 $path = public_path('images/photo');
                 $files = $request->photo;
@@ -147,6 +145,7 @@ class DoctorsController extends Controller
                 'address' => $request->address,
                 'photo' => $file_name
             ]);
+
             session()->flash('success', 'Data Berhasil Ditambahkan !');
             return redirect(route('doctors.index'));
         } catch (\Exception $e) {
@@ -163,6 +162,14 @@ class DoctorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $doctor = Doctor::findOrFail($id);
+            $doctor->delete();
+
+            session()->flash('success', 'Data Berhasil di-Hapus !');
+            return redirect(route('doctors.index'));
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
     }
 }

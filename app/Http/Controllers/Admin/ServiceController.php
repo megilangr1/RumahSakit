@@ -124,7 +124,7 @@ class ServiceController extends Controller
             $service->delete();
 
             session()->flash('success', 'Data Berhasil di-Hapus !');
-            return redirect(route('service'));
+            return redirect(route('service.index'));
         } catch (\Exception $e) {
             return redirect()->back();
         }
