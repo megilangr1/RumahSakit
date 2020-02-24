@@ -65,6 +65,7 @@ class UsersController extends Controller
             session()->flash('success', 'Berhasil Melakukan Registrasi ! Silahkan Lanjutkan dengan Cara Mengkonfirmasi E-Mail !');
             return redirect(route('user.register'));
         } catch (\Exception $e) {
+						dd($e);
             session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Dalam Beberapa Saat !');
             return redirect()->back();
         }
