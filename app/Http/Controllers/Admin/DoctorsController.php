@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use File;
 use App\Doctor;
 use App\User;
 use App\Service;
@@ -163,7 +164,11 @@ class DoctorsController extends Controller
     {
         try {
             $doctor = Doctor::findOrFail($id);
+            $user = User::findOrFail($doctor->user_id);
+            File::delete('images/photo/'.$doctor->photo);
+            
             $doctor->delete();
+            $user->delete();
 
             session()->flash('success', 'Data Berhasil di-Hapus !');
             return redirect(route('doctors.index'));
