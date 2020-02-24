@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\VerifyPatient;
 use App\Patient;
+use App\Registration;
 use App\Service;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
@@ -19,12 +21,53 @@ class UsersController extends Controller
 
     public function login()
     {
+				$check = Auth::check();
+				if ($check) {
+					return redirect(route('user.main'));
+				}
         $services = Service::orderBy('name')->get();
         return view('frontend.users.login', compact('services'));
     }
 
+		public function log(Request $request)
+		{
+			$this->validate($request, [
+				'email' => 'required|email',
+				'password' => 'required|string'
+			]);
+			
+			try {
+				$login = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+				if ($login == true) {
+					$user = User::where('email', '=', $request->email)->firstOrFail();
+					if ($user->email_verified_at == 'null') {
+						session()->flash('mustVerif', 'Akun anda belum di-Verifikasi ! Silahkan verifikasi terlebih dahulu');
+						return redirect(route('user.login'));
+					} else {
+						if ($user->roles->first()->name == 'pasien') {
+							$log = Auth::loginUsingId($user->id, TRUE);
+							return redirect(route('user.main'));
+						} else {
+							session()->flash('fail', 'User Anda Tidak Dapat di-Gunakan !');
+							return redirect(route('user.login'));
+						}
+					}
+				} else {
+					session()->flash('fail', 'E-Mail / Password Salah !');
+					return redirect(route('user.login'));
+				}
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan ! Coba Lagi Dalam Beberapa Saat !');
+				return redirect()->back();
+			}
+		}
+
     public function register()
     {
+				$check = Auth::check();
+				if ($check) {
+					return redirect(route('user.main'));
+				}
         $services = Service::orderBy('name')->get();
         return view('frontend.users.register', compact('services'));
     }
@@ -65,7 +108,6 @@ class UsersController extends Controller
             session()->flash('success', 'Berhasil Melakukan Registrasi ! Silahkan Lanjutkan dengan Cara Mengkonfirmasi E-Mail !');
             return redirect(route('user.register'));
         } catch (\Exception $e) {
-						dd($e);
             session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Dalam Beberapa Saat !');
             return redirect()->back();
         }
@@ -88,10 +130,105 @@ class UsersController extends Controller
         }
     }
 
+		public function main()
+		{
+			$check = Auth::check();
+			if ($check) {
+				$user = Auth::user();
+				if ($user->roles->first()->name != 'pasien') {
+					Auth::logout();
+					return redirect(route('user.login'));
+				} else {
+					$services = Service::orderBy('name', 'ASC')->get();
+					return view('frontend.users.main', compact('services'));
+				}
+			} else {
+				Auth::logout();
+				return redirect(route('user.login'));
+			}
+		}
+
     public function rawatjalan()
     {
-        if(auth()->check() == false) {
-            return redirect(route('user.register'));
-        }
-    }
+			$check = Auth::check();
+			if (!$check) {
+				return redirect(route('user.register'));
+			} 
+
+			$services = Service::orderBy('name', 'ASC')->get();
+			$user = Auth::user();
+			return view('frontend.users.rawatjalan', compact('services', 'user'));
+		}
+
+		public function daftarRj(Request $request)
+		{
+			$this->validate($request, [
+				'nik' => 'required|numeric|exists:patients,nik',
+				'name' => 'required|string',
+				'date_of_birth' => 'required|date',
+				'phone' => 'required|numeric',
+				'address' => 'required|string',
+				'service_id' => 'required|numeric|exists:services,id',
+				'regist_date' => 'required|date'
+			]);
+
+			if ($request->regist_date < now()->addDay('-1')) {
+				session()->flash('fail', 'Tanggal Berobat Tidak Boleh Kurang Dari Hari Ini !');
+				return redirect()->back();
+			}
+
+			try {
+				$user = User::findOrFail(auth()->user()->id);
+				$number = time().rand(100, 999).$user->id.rand(0,9);
+
+				$regist = Registration::firstOrCreate([
+					'patient_id' => $user->pasien->id,
+					'service_id' => $request->service_id,
+					'number' => $number,
+					'regist_date' => $request->regist_date,
+					'expired_date' => date('Y-m-d', strtotime($request->regist_date.'+ 1 days'))
+				]);
+				
+				session()->flash('success', 'Berhasil Mendaftar Rawat Jalan.');
+				return redirect(route('code.rawat.jalan', $regist->id));
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Dalam Beberapa Saat !');				
+				return redirect()->back();
+			}
+		}
+
+		public function code()
+		{
+			$services = Service::orderBy('name', 'DESC')->get();
+			$regist = Registration::orderBy('created_at', 'DESC')->get();
+			return view('frontend.users.code', compact('services', 'regist'));
+		}
+
+		public function codeDetail($id)
+		{
+			try {
+				$user = Auth::user();
+				$regist = Registration::where('id', '=', $id)->where('patient_id', '=', $user->pasien->id)->firstOrFail();
+				$services = Service::orderBy('name', 'DESC')->get();
+				return view('frontend.users.codeshow', compact('services', 'regist'));
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
+
+		public function codeDelete($id)
+		{
+			try {
+				$user = Auth::user();
+				$regist = Registration::where('id', '=', $id)->where('patient_id', '=', $user->pasien->id)->firstOrFail();
+				$regist->delete();
+
+				session()->flash('success', 'Berhasil Mendaftar Rawat Jalan.');				
+				return redirect(route('code.rawat.jalan'));
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
 }
