@@ -110,7 +110,6 @@ class DoctorsController extends Controller
 
             return view('admin.doctors.edit', compact('doctor', 'edit', 'service'));
         } catch (\Exception $e) {
-            dd($e);
             session()->flash('error', 'Terjadi Kesalahan');
             return redirect()->back();
         }
