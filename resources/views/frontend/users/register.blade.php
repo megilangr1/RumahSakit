@@ -1,13 +1,9 @@
 @extends('frontend.layouts.master')
 
 @section('content') 
-<!-- BEGIN SIDEBAR -->
-<div class="sidebar col-md-3 col-sm-3">
-  <ul class="list-group margin-bottom-25 sidebar-menu">
-    <li class="list-group-item clearfix"><a href="{{ route('user.register') }}"><i class="fa fa-angle-right"></i> Daftar</a></li>
-  </ul>
-</div>
-<!-- END SIDEBAR -->
+
+@include('frontend.layouts.sidebar')
+
 <!-- BEGIN CONTENT -->
 <div class="col-md-9 col-sm-9">
   <h3 align="center" class="margin-bottom-20">Silahkan Buat Akun Untuk Melakukan Pendaftaran Rawat Jalan</h3>

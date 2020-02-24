@@ -21,12 +21,18 @@ Route::get('/layanan/{service}', 'Frontend\ServiceController@show')->name('servi
 
 Route::get('/users', 'Frontend\UsersController@index')->name('user');
 Route::get('/users/login', 'Frontend\UsersController@login')->name('user.login');
+Route::post('users/login', 'Frontend\UsersController@log')->name('user.log');
 Route::get('/users/register', 'Frontend\UsersController@register')->name('user.register');
 Route::post('/users/register', 'Frontend\UsersController@regist')->name('user.regist');
+Route::get('/users/main', 'Frontend\UsersController@main')->name('user.main');
 
 Route::get('/users/{token}/verif-email', 'Frontend\UsersController@verifEmail');
 
 Route::get('/rawat-jalan', 'Frontend\UsersController@rawatjalan')->name('rawat.jalan');
+Route::post('/rawat-jalan', 'Frontend\UsersController@daftarRj')->name('daftar.rawat.jalan');
+Route::get('/rawat-jalan/code', 'Frontend\UsersController@code')->name('list.rawat.jalan');
+Route::get('/rawat-jalan/code/{id}/detail', 'Frontend\UsersController@codeDetail')->name('code.rawat.jalan');
+Route::delete('/rawat-jalan/code/{id}/delete', 'Frontend\UsersController@codeDelete')->name('delete.rawat.jalan');
 
 Route::group(['middleware' => ['auth']], function () {
 	Route::group(['prefix' => 'admin'], function () {
