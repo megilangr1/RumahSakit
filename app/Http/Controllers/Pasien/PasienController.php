@@ -53,7 +53,7 @@ class PasienController extends Controller
     {
         $pasien = Patient::orderBy('created_at', 'DESC')->get();
         
-        return view('admin.patients.show', compact($pasien));
+        return view('admin.patients.show', compact('pasien'));
     }
 
     /**

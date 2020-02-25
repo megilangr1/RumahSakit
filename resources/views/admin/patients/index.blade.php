@@ -50,14 +50,6 @@
 								<td>{{ $p->address }}</td>
 								<td width="20%" colspan="2">
 									<a href="{{ route('patients.show',$p->id) }}" class="btn btn-warning btn-xs">Detail Pasien</a>
-
-									<form action="{{ route('patients.destroy',$p->id) }}" method="post">
-										@csrf
-										@method('DELETE')  
-										<button type="submit" class="btn btn-danger btn-xs">
-											Hapus
-										</button> 
-									</form>
 								</td>
 							</tr>
 						@empty
