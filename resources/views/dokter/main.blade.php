@@ -25,8 +25,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $d->pasien->name }}</td>
-                            <td width="20%" colspan="2">
-															<a href="#" class="btn btn-info btn-xs">Periksa</a>
+                            <td width="20%">
+															<a href="{{ route('dokter.check', $d->id) }}" class="btn btn-info btn-xs">Periksa</a>
                             </td>
                         </tr>
                         @empty

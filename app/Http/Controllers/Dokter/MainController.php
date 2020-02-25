@@ -24,4 +24,20 @@ class MainController extends Controller
 			return redirect(route('dokter.login'));
 		}
 	}
+
+	public function check($id)
+	{
+		try {
+			$wl = WaitingList::findOrFail($id);
+			return view('dokter.check.show', compact('wl'));
+		} catch (\Exception $e) {
+			session()->flash('error', 'Terjadi Kesalahan !');
+			return redirect()->back();
+		}
+	}
+
+	public function checked(Request $request)
+	{
+		dd($request->all());
+	}
 }

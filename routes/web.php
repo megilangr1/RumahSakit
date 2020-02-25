@@ -62,6 +62,7 @@ Route::group(['prefix' => 'dokter'], function () {
 	Route::get('/login', 'Dokter\LoginController@login')->name('dokter.login');
 	Route::post('/login', 'Dokter\LoginController@log')->name('dokter.log');
 	Route::group(['middleware' => ['role:dokter']], function () {
-		//
+		Route::get('/check/{id}', 'Dokter\MainController@check')->name('dokter.check');
+		Route::post('/checked', 'Dokter\MainController@checked')->name('dokter.checked');
 	});
 });
