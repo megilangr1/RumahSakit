@@ -45,3 +45,23 @@ Route::group(['middleware' => ['auth']], function () {
 		});
 	}); 
 });
+
+Route::group(['prefix' => 'operator'], function () {
+	Route::get('/', 'Operator\MainController@index')->name('operator.index');
+	Route::get('/login', 'Operator\LoginController@login')->name('operators.login');
+	Route::post('/login', 'Operator\LoginController@log')->name('operators.log');
+	Route::group(['middleware' => ['role:operator']], function () {
+		Route::get('/pendaftaran', 'Operator\MainController@regist')->name('operator.regist');
+		Route::get('/pendaftaran/{number}/next', 'Operator\MainController@registDetail')->name('operator.next');
+		Route::post('/pendaftaran', 'Operator\MainController@assignWL')->name('operator.assign');
+	});
+});
+
+Route::group(['prefix' => 'dokter'], function () {
+	Route::get('/', 'Dokter\MainController@index')->name('dokter.index');
+	Route::get('/login', 'Dokter\LoginController@login')->name('dokter.login');
+	Route::post('/login', 'Dokter\LoginController@log')->name('dokter.log');
+	Route::group(['middleware' => ['role:dokter']], function () {
+		//
+	});
+});
