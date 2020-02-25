@@ -122,7 +122,7 @@ class OperatorController extends Controller
 			$file_name = null;
 			if ($request->hasFile('photo')) {
 				if ($operators != null) {
-					unlink(public_path('images/photo').'/'.$operators->photo);
+					Storage::disk('photo')->delete('photo/'.$operators->photo);
 				}
 				$path = public_path('images/photo');
 				$files = $request->photo;
@@ -130,8 +130,14 @@ class OperatorController extends Controller
 				$files->move($path, $file_name);
 			}
 
+			$user = User::findOrFail($operators->user_id);
+			$user->update([
+				'email' => $email,
+				'password' => $password,
+			]);
+
 			$operators->update([
-				'nip' => $request->nip,
+				'nip' => $nip,
 				'name' => $request->name,
 				'date_of_birth' => $request->date_of_birth,
 				'phone' => $request->phone,
@@ -139,8 +145,32 @@ class OperatorController extends Controller
 				'photo' => $file_name
 			]);
 
+			session()->flash('success', 'Data Operator Berhasil di-Ubah !');
+			return redirect(route('operators.index'));
 		} catch (\Exception $e) {
+			dd($e);
 			session()->flash('error', 'Terjadi Kesalahan !');
+			return redirect()->back();
+		}
+	}
+
+	public function destroy($id)
+	{
+		try {
+			$operators = Operator::findOrFail($id);
+			$user = User::findOrFail($operators->user_id);
+
+			if ($operators->photo != null) {
+				Storage::disk('photo')->delete('photo/'.$operators->photo);
+			}
+			$operators->delete();
+			$user->delete();
+
+			session()->flash('success', 'Data Berhasil Di-Hapus !');
+			return redirect(route('operators.index'));
+
+		} catch (\Exception $w) {
+			session()->flash('Terjadi Kesalahan !');
 			return redirect()->back();
 		}
 	}
