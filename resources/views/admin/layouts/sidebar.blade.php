@@ -21,8 +21,9 @@
 					<li class="{{ Request::is('admin/doctors*') ? 'active':'' }}">
 						<a href="{{ route('doctors.index') }}"> <i class="fa fa-cogs"></i> Manajemen Dokter</a>
 					</li>
-					<li>
-						<a href="#"> <i class="fa fa-cogs"></i> New Dashboard #1</a>
+					</li>
+					<li class="{{ Request::is('admin/operators*') ? 'active':'' }}">
+						<a href="{{ route('operators.index') }}"> <i class="fa fa-cogs"></i> Manajemen Operator</a>
 					</li>
 				</ul>
 			</li>

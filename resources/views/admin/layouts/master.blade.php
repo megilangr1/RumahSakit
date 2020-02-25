@@ -109,7 +109,27 @@
                         </li>
                     </ul>
                 </div>
-                <h3 class="page-title"> @yield('title') <small>@yield('small-title')</small> </h3>
+								<h3 class="page-title"> @yield('title') <small>@yield('small-title')</small> </h3>								
+								@if (session('success'))
+								<div class="alert alert-success alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									{{ session('success') }}
+								</div>
+								@endif
+
+								@if (session('error'))
+								<div class="alert alert-danger alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									{{ session('error') }}
+								</div>
+								@endif
+
+								@if (session('fail'))
+								<div class="alert alert-danger alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									{{ session('fail') }}
+								</div>
+								@endif
                 <div class="row">
 									@yield('content')
                 </div>
@@ -184,11 +204,12 @@
     <script src="{{ asset('') }}assets/admin/pages/scripts/index.js" type="text/javascript"></script>
     <script src="{{ asset('') }}assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
     
-<script src="../../assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script src="../../assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="../../assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
-<script src="../../assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="../../assets/admin/pages/scripts/table-advanced.js"></script>
+		<script src="{{ asset('') }}assets/global/scripts/metronic.js" type="text/javascript"></script>
+		<script src="{{ asset('') }}assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+		<script src="{{ asset('') }}assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+		<script src="{{ asset('') }}assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+		<script src="{{ asset('') }}assets/admin/pages/scripts/table-advanced.js"></script>
+
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/select2/select2.min.js"></script>
     <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>

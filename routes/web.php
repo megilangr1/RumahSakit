@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::resource('roles', 'Admin\RoleController');
 			Route::resource('services', 'Admin\ServiceController');
 			Route::resource('doctors', 'Admin\DoctorsController');
+			Route::resource('operators', 'Admin\OperatorController');
 		});
 	}); 
 });

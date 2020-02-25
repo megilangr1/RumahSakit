@@ -22,6 +22,7 @@ class CreateRegistrationsTable extends Migration
 						$table->date('expired_date');
 						$table->foreign('patient_id')->references('id')->on('patients');
 						$table->foreign('service_id')->references('id')->on('services');
+						$table->integer('status')->default('0');
             $table->timestamps();
         });
     }
