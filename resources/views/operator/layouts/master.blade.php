@@ -67,7 +67,7 @@
                             data-close-others="true">
                             {{-- <img alt="" class="img-circle" src="{{ asset('') }}assets/admin/layout/img/avatar3_small.jpg" /> --}}
                             <img alt="" class="img-circle" src="{{ asset('') }}images/user-no-image.jpg" />
-                            <span class="username username-hide-on-mobile"> &ensp; {{ auth()->user()->admin->name }}</span>
+                            <span class="username username-hide-on-mobile"> &ensp; {{ auth()->user()->operator->name }}</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
@@ -93,7 +93,7 @@
     <div class="clearfix">
     </div>
     <div class="page-container">
-				@include('admin.layouts.sidebar')
+				@include('operator.layouts.sidebar')
 
 				<div class="page-content-wrapper">
             <div class="page-content">
@@ -101,11 +101,11 @@
                     <ul class="page-breadcrumb">
                         <li>
                             <i class="fa fa-home"></i>
-                                <a href="javascript:void(0)">Admin</a>
+                                <a href="javascript:void(0)">Operator</a>
                                 <i class="fa fa-angle-right"></i>
                         </li>												
                         <li>
-                            <a href="{{ route('admin.index') }}">Halaman Utama</a>
+                            <a href="{{ route('operator.index') }}">Halaman Utama</a>
                         </li>
                     </ul>
                 </div>

@@ -41,7 +41,32 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::resource('roles', 'Admin\RoleController');
 			Route::resource('services', 'Admin\ServiceController');
 			Route::resource('doctors', 'Admin\DoctorsController');
+<<<<<<< HEAD
 			Route::resource('patients', 'Pasien\PasienController');
+=======
+			Route::resource('operators', 'Admin\OperatorController');
+>>>>>>> 7489907f49fb514061ba2877c6b22b203e3304c4
 		});
 	}); 
+});
+
+Route::group(['prefix' => 'operator'], function () {
+	Route::get('/', 'Operator\MainController@index')->name('operator.index');
+	Route::get('/login', 'Operator\LoginController@login')->name('operators.login');
+	Route::post('/login', 'Operator\LoginController@log')->name('operators.log');
+	Route::group(['middleware' => ['role:operator']], function () {
+		Route::get('/pendaftaran', 'Operator\MainController@regist')->name('operator.regist');
+		Route::get('/pendaftaran/{number}/next', 'Operator\MainController@registDetail')->name('operator.next');
+		Route::post('/pendaftaran', 'Operator\MainController@assignWL')->name('operator.assign');
+	});
+});
+
+Route::group(['prefix' => 'dokter'], function () {
+	Route::get('/', 'Dokter\MainController@index')->name('dokter.index');
+	Route::get('/login', 'Dokter\LoginController@login')->name('dokter.login');
+	Route::post('/login', 'Dokter\LoginController@log')->name('dokter.log');
+	Route::group(['middleware' => ['role:dokter']], function () {
+		Route::get('/check/{id}', 'Dokter\MainController@check')->name('dokter.check');
+		Route::post('/checked', 'Dokter\MainController@checked')->name('dokter.checked');
+	});
 });

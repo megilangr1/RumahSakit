@@ -62,7 +62,7 @@ class DoctorsController extends Controller
 
             $path = public_path('images/photo');
             $files = $request->photo;
-            $file_name = time().'.'.$files->getClientOriginalName();
+            $file_name = time().'.'.$files->getClientOriginalExtension();
             $files->move($path, $file_name);
             $input = $request->all();
 
@@ -131,7 +131,7 @@ class DoctorsController extends Controller
             if ($request->hasFile('photo')) {
                 $path = public_path('images/photo');
                 $files = $request->photo;
-                $file_name = time().'.'.$files->getClientOriginalName();
+                $file_name = time().'.'.$files->getClientOriginalExtension();
                 $files->move($path, $file_name);
                 $input = $request->all();
             }

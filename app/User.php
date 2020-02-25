@@ -45,11 +45,16 @@ class User extends Authenticatable
 
     public function dokter()
     {
-        return $this->hasOne('App\Dokter');
+        return $this->hasOne('App\Doctor');
 		}
 		
 		public function pasien()
 		{
 				return $this->hasOne('App\Patient');
+		}
+
+		public function operator()
+		{
+				return $this->hasOne('App\Operator');
 		}
 }
