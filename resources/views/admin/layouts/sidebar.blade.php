@@ -21,17 +21,11 @@
 					<li class="{{ Request::is('admin/doctors*') ? 'active':'' }}">
 						<a href="{{ route('doctors.index') }}"> <i class="fa fa-cogs"></i> Manajemen Dokter</a>
 					</li>
-<<<<<<< HEAD
 					<li class="{{ Request::is('admin/patients*') ? 'active':'' }}">
 						<a href="{{ route('patients.index') }}"> <i class="fa fa-cogs"></i> Manajemen Pasien</a>
 					</li>
-					<li>
-						<a href="#"> <i class="fa fa-cogs"></i> New Dashboard #1</a>
-=======
-					</li>
 					<li class="{{ Request::is('admin/operators*') ? 'active':'' }}">
 						<a href="{{ route('operators.index') }}"> <i class="fa fa-cogs"></i> Manajemen Operator</a>
->>>>>>> 7489907f49fb514061ba2877c6b22b203e3304c4
 					</li>
 				</ul>
 			</li>
