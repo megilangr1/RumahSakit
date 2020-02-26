@@ -51,9 +51,10 @@ class PasienController extends Controller
      */
     public function show($id)
     {
-        $pasien = Patient::orderBy('created_at', 'DESC')->get();
-        
-        return view('admin.patients.show', compact('pasien'));
+        $pasien = Patient::where('id', $id)->get();
+        $user = User::where('id', 'user_id')->find('email');
+        // dd($user);
+        return view('admin.patients.show', compact('pasien', 'user'));
     }
 
     /**

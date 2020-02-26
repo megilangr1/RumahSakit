@@ -80,6 +80,7 @@ class DoctorsController extends Controller
             session()->flash('success', 'Data Berhasil Ditambahkan !');
             return redirect(route('doctors'));
         } catch (\Exception $e) {
+            dd($e);
             session()->flash('error', 'Terjadi Kesalahan !');
             return redirect()->back();
         }
