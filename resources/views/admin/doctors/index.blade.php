@@ -27,13 +27,13 @@
 					<div class="form-group form-md-line-input {{ $errors->has('nip') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="numeric" name="nip" id="nip" class="form-control" required autofocus >
 						<label for="nip">NIP :* </label>
-						<span class="help-block">{{ $errors->first('nip') }}</span>
+						<p style="color:red;">{{ $errors->first('nip') }}</span>
 					</div>
 					<br>
 					<div class="form-group form-md-line-input {{ $errors->has('nama') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="text" name="nama" id="nama" class="form-control" required autofocus >
 						<label for="nama">Nama Dokter :* </label>
-						<span class="help-block">{{ $errors->first('nama') }}</span>
+						<p style="color:red;">{{ $errors->first('nama') }}</span>
                     </div>
 					<br>
 					<div class="form-group form-md-line-input {{ $errors->has('poli') ? 'has-error':'' }}" style="margin-bottom: 10px;">
@@ -43,43 +43,43 @@
 								<option value="{{ $s->id }}">{{ $s->name }}</option>
 							@endforeach
 						</select>
-						<span class="help-block">{{ $errors->first('poli') }}</span>
+						<p style="color:red;">{{ $errors->first('poli') }}</span>
                     </div>
                     <br>
                     <div class="form-group form-md-line-input {{ $errors->has('dob') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="date" name="dob" id="dob" class="form-control" required autofocus >
 						<label for="dob">Tanggal Lahir :* </label>
-						<span class="help-block">{{ $errors->first('dob') }}</span>
+						<p style="color:red;">{{ $errors->first('dob') }}</span>
                     </div>
                     <br>
                     <div class="form-group form-md-line-input {{ $errors->has('noHp') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="text" name="noHp" id="noHp" class="form-control" required autofocus >
 						<label for="noHp">Nomor Hp :* </label>
-						<span class="help-block">{{ $errors->first('noHp') }}</span>
+						<p style="color:red;">{{ $errors->first('noHp') }}</span>
                     </div>
                     <br>
                     <div class="form-group form-md-line-input {{ $errors->has('address') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="text" name="address" id="address" class="form-control" required autofocus >
 						<label for="address">Alamat :* </label>
-						<span class="help-block">{{ $errors->first('address') }}</span>
+						<p style="color:red;">{{ $errors->first('address') }}</span>
                     </div>
                     <br>
                     <div class="form-group form-md-line-input {{ $errors->has('photo') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="file" name="photo" id="photo" class="form-control" autofocus >
 						<label for="photo">Foto :* </label>
-						<span class="help-block">{{ $errors->first('photo') }}</span>
+						<p style="color:red;">{{ $errors->first('photo') }}</span>
                     </div>
 					<br>
 					<div class="form-group form-md-line-input {{ $errors->has('email') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="email" name="email" id="email" class="form-control" required autofocus >
 						<label for="email">Email :* </label>
-						<span class="help-block">{{ $errors->first('email') }}</span>
+						<p style="color:red;">{{ $errors->first('email') }}</span>
 					</div>
 					<br>
 					<div class="form-group form-md-line-input {{ $errors->has('password') ? 'has-error':'' }}" style="margin-bottom: 10px;">
 						<input type="password" name="password" id="password" class="form-control" required autofocus >
 						<label for="password">Password :* </label>
-						<span class="help-block">{{ $errors->first('password') }}</span>
+						<p style="color:red;">{{ $errors->first('password') }}</p>
 					</div>
 					<br>
 
