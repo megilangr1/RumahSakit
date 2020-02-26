@@ -153,7 +153,13 @@ class UsersController extends Controller
 			$check = Auth::check();
 			if (!$check) {
 				return redirect(route('user.register'));
-			} 
+			} else {
+				$user = Auth::user();
+				if ($user->roles->first()->name != 'pasien') {
+					Auth::logout();
+					return redirect(route('user.register'));
+				}
+			}
 
 			$services = Service::orderBy('name', 'ASC')->get();
 			$user = Auth::user();
