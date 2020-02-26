@@ -44,7 +44,7 @@ Manajemen Dokter
                         <label for="poli">Nama Poli :* </label>
                         <select name="service" class="form-control custom-select" id="inputGroupSelect01">
                             @foreach ($service as $s)
-                            <option value="{{ $s->id }}">{{ $s->name }}</option>
+                            <option value="{{ $s->id }}" {{ old('service') == $s->id ? 'selected':'' }}>{{ $s->name }}</option>
                             @endforeach
                         </select>
                         <p style="color:red;">{{ $errors->first('poli') }}</span>

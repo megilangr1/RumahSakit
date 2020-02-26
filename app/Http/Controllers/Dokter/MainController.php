@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\WaitingList;
 use Illuminate\Support\Facades\Auth;
+use Cart;
 
 class MainController extends Controller
 {
@@ -29,8 +30,12 @@ class MainController extends Controller
 	{
 		try {
 			$wl = WaitingList::findOrFail($id);
-			return view('dokter.check.show', compact('wl'));
+			$user = Auth::user();
+			$cart = Cart::session($user->id);
+			// dd($cart->getContent());
+			return view('dokter.check.show', compact('wl', 'cart'));
 		} catch (\Exception $e) {
+			dd($e);
 			session()->flash('error', 'Terjadi Kesalahan !');
 			return redirect()->back();
 		}
@@ -39,5 +44,10 @@ class MainController extends Controller
 	public function checked(Request $request)
 	{
 		dd($request->all());
+	}
+
+	public function add()
+	{
+		//
 	}
 }

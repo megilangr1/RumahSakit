@@ -78,9 +78,8 @@ class DoctorsController extends Controller
             ]);
 
             session()->flash('success', 'Data Berhasil Ditambahkan !');
-            return redirect(route('doctors'));
+            return redirect(route('doctors.index'));
         } catch (\Exception $e) {
-            dd($e);
             session()->flash('error', 'Terjadi Kesalahan !');
             return redirect()->back();
         }
@@ -150,6 +149,7 @@ class DoctorsController extends Controller
             session()->flash('success', 'Data Berhasil Ditambahkan !');
             return redirect(route('doctors.index'));
         } catch (\Exception $e) {
+						dd($e);
             session()->flash('error', 'Terjadi Kesalahan');
             return redirect()->back();
         }

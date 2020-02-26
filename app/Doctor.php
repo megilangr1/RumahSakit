@@ -28,6 +28,6 @@ class Doctor extends Model
 
     public function service()
     {
-        return $this->hasOne('App\Service', 'id');
+        return $this->hasOne('App\Service', 'id', 'service_id');
     }
 }

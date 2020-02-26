@@ -153,7 +153,8 @@
 				}
 			}
 		</script>
-    <script src="{{ asset('') }}assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+		<script src="{{ asset('') }}assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+		<script src="{{ asset('') }}other/jquery/jquery-3.4.1.min.js"></script>
     <script src="{{ asset('') }}assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
     <script src="{{ asset('') }}assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
     <script src="{{ asset('') }}assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -217,7 +218,6 @@
     <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
     <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
     <script type="text/javascript" src="{{ asset('') }}assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
-    <script src="{{ asset('') }}assets/admin/pages/scripts/table-advanced.js"></script>
 
     <!-- END PAGE LEVEL PLUGINS -->
 
