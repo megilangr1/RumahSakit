@@ -16,26 +16,50 @@ class DiagnoseController extends Controller
 		$cartItem = $cart->getContent()->count() + 1;
 		$id = $user->dokter->id.$request->patient_id.rand(10, 99).$cartItem;
 
-		if ($request->desc == '') {
-			$desc = '';
-		} else {
-			$desc = $request->desc;
+		if ($request->type == 'Diagnosa') {
+			if ($request->desc == '') {
+				$desc = '';
+			} else {
+				$desc = $request->desc;
+			}
+
+			$add = Cart::session($user->id)->add([
+				'id' => $id,
+				'name' => $request->name,
+				'price' => 0,
+				'quantity' => 1,
+				'attributes' => [
+					'diagnosa' => $request->diagnosa,
+					'desc' => $desc
+				]
+			]);
+
+			$data = [
+				'message' => 'Data di-Tambahkan.'
+			];
+		} else if ($request->type == 'Resep') {
+			if ($request->desc == '') {
+				$desc = '';
+			} else {
+				$desc = $request->desc;
+			}
+
+			$add = Cart::session($user->id)->add([
+				'id' => $id,
+				'name' => $request->name,
+				'price' => 0,
+				'quantity' => 1,
+				'attributes' => [
+					'medicine_name' => $request->med_name,
+					'rules' => $request->rules,
+					'medicine_desc' => $desc
+				]
+			]);
+
+			$data = [
+				'message' => 'Data di-Tambahkan.'
+			];
 		}
-
-		$add = Cart::session($user->id)->add([
-			'id' => $id,
-			'name' => $request->name,
-			'price' => 0,
-			'quantity' => 1,
-			'attributes' => [
-				'diagnosa' => $request->diagnosa,
-				'desc' => $desc
-			]
-		]);
-
-		$data = [
-			'message' => 'Hasil Diagnosa di-Tambahkan.'
-		];
 
 		return response()->json($data, 200);
 	}
@@ -53,7 +77,7 @@ class DiagnoseController extends Controller
 		$cart = Cart::session($user->id)->remove($request->id);
 		
 		$data = [
-			'message' => 'Hasil Diagnosa di-Hapus.'
+			'message' => 'Data di-Hapus.'
 		];
 
 		return response()->json($data, 200);

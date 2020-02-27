@@ -102,7 +102,7 @@
 						<div class="form-group">
 							<label for="regist_date" class="col-lg-4 control-label">Tanggal Berobat :</label>
 							<div class="col-lg-8">
-								<input type="date" class="form-control" id="regist_date" name="regist_date" required value="{{ date('d/m/y') }}" >
+								<input type="date" class="form-control" id="regist_date" name="regist_date" required value="{{ date('Y-m-d') }}" >
 								<p style="margin: 0px !important; color: red;">
 									{{ $errors->first('regist_date') }}
 								</p>
