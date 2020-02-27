@@ -39,9 +39,15 @@
 									</button>
 								</form>
 								@else
-								<a href="{{ route('code.rawat.jalan', $item->id) }}" class="btn btn-info btn-xs" style="color: #fff;">
-									Lihat
-								</a>
+									@if ($item->status == '0')
+										<a href="{{ route('code.rawat.jalan', $item->id) }}" class="btn btn-info btn-xs" style="color: #fff;">
+											Lihat
+										</a>
+									@else
+										<button class="btn btn-success btn-xs">
+											Sudah di-Pakai
+										</button>
+									@endif
 								@endif
 							</td>
 						</tr>

@@ -108,6 +108,7 @@
 							<th>Nama</th>
 							<th>Telfon</th>
 							<th>Alamat</th>
+							<th>E-mail Operator</th>
 							<th>Aksi</th>
 						</tr>
 					</thead>
@@ -119,6 +120,7 @@
 								<td>{{ $item->name }}</td>
 								<td>{{ $item->phone }}</td>
 								<td>{{ $item->address }}</td>
+                                <td>{{ $item->login->email }}</td>
 								<td width="20%">
 									<form action="{{ route('operators.destroy', $item->id) }}" method="post">
 										@csrf

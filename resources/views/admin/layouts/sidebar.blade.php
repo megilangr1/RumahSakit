@@ -27,14 +27,7 @@
 					<li class="{{ Request::is('admin/operators*') ? 'active':'' }}">
 						<a href="{{ route('operators.index') }}"> <i class="fa fa-cogs"></i> Manajemen Operator</a>
 					</li>
-					<li>
-						<a href="#"> <i class="fa fa-cogs"></i> New Dashboard #1</a>
-					</li>
-
 				</ul>
-			</li>
-			<li class="last ">
-					<a href="{{ route('admin.index') }}"><i class="fa fa-home"></i> <span class="title">Last Side Bar</span></a>
 			</li>
 		</ul>
 	</div>

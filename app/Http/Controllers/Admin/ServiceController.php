@@ -47,7 +47,7 @@ class ServiceController extends Controller
             $service = Service::firstOrCreate($request->only('name', 'description'));
 
             session()->flash('success', 'Data Berhasil Ditambahkan !');
-            return redirect(route('service'));
+            return redirect(route('services.index'));
         } catch (\Exception $e) {
             session()->flash('error', 'Terjadi Kesalahan !');
             return redirect()->back();
@@ -124,7 +124,7 @@ class ServiceController extends Controller
             $service->delete();
 
             session()->flash('success', 'Data Berhasil di-Hapus !');
-            return redirect(route('service.index'));
+            return redirect(route('services.index'));
         } catch (\Exception $e) {
             return redirect()->back();
         }

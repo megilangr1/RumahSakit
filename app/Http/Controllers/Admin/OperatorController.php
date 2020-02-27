@@ -60,7 +60,6 @@ class OperatorController extends Controller
 			return redirect(route('operators.index'));
 
 		} catch (\Exception $e) {
-			dd($e);
 			session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Kembali.');
 			return redirect()->back();
 		}
@@ -173,5 +172,10 @@ class OperatorController extends Controller
 			session()->flash('Terjadi Kesalahan !');
 			return redirect()->back();
 		}
+	}
+	
+	public function print()
+	{
+		# code...
 	}
 }

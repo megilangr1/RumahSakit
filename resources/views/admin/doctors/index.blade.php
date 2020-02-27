@@ -1,91 +1,97 @@
 @extends('admin.layouts.master')
 
-@section('css')
-<style>
-	.dataTables_scrollBody {
-		height: 200px !important;
-	}
-</style>
-@endsection
-
 @section('title')
-	Manajemen Dokter
+    Manajemen Dokter
 @endsection
 
 @section('content')
 <div class="col-md-12">
-	<div class="portlet light bordered">
+	<div class="portlet light">
 		<div class="portlet-title">
 			<div class="caption">
-				<span class="caption-subject bold uppercase"> Form Tambah Dokter </span>
+				<span class="caption-subject bold uppercase">
+					Form Dokter
+				</span>
 			</div>
 		</div>
 		<div class="portlet-body form">
 			<form action="{{ route('doctors.store') }}" method="post" enctype="multipart/form-data">
 				@csrf
 				<div class="form-body">
-					<div class="form-group form-md-line-input {{ $errors->has('nip') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<input type="numeric" name="nip" id="nip" class="form-control" required autofocus >
-						<label for="nip">NIP :* </label>
-						<span class="help-block">{{ $errors->first('nip') }}</span>
-					</div>
-					<br>
-					<div class="form-group form-md-line-input {{ $errors->has('nama') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<input type="text" name="nama" id="nama" class="form-control" required autofocus >
-						<label for="nama">Nama Dokter :* </label>
-						<span class="help-block">{{ $errors->first('nama') }}</span>
-                    </div>
-					<br>
-					<div class="form-group form-md-line-input {{ $errors->has('poli') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<label for="poli">Nama Poli :* </label>
-						<select name="service" class="form-control custom-select" id="inputGroupSelect01">
-							@foreach ($service as $s)
-								<option value="{{ $s->id }}">{{ $s->name }}</option>
-							@endforeach
-						</select>
-						<span class="help-block">{{ $errors->first('poli') }}</span>
-                    </div>
-                    <br>
-                    <div class="form-group form-md-line-input {{ $errors->has('dob') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<input type="date" name="dob" id="dob" class="form-control" required autofocus >
-						<label for="dob">Tanggal Lahir :* </label>
-						<span class="help-block">{{ $errors->first('dob') }}</span>
-                    </div>
-                    <br>
-                    <div class="form-group form-md-line-input {{ $errors->has('noHp') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<input type="text" name="noHp" id="noHp" class="form-control" required autofocus >
-						<label for="noHp">Nomor Hp :* </label>
-						<span class="help-block">{{ $errors->first('noHp') }}</span>
-                    </div>
-                    <br>
-                    <div class="form-group form-md-line-input {{ $errors->has('address') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<input type="text" name="address" id="address" class="form-control" required autofocus >
-						<label for="address">Alamat :* </label>
-						<span class="help-block">{{ $errors->first('address') }}</span>
-                    </div>
-                    <br>
-                    <div class="form-group form-md-line-input {{ $errors->has('photo') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<input type="file" name="photo" id="photo" class="form-control" autofocus >
-						<label for="photo">Foto :* </label>
-						<span class="help-block">{{ $errors->first('photo') }}</span>
-                    </div>
-					<br>
-					<div class="form-group form-md-line-input {{ $errors->has('email') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<input type="email" name="email" id="email" class="form-control" required autofocus >
-						<label for="email">Email :* </label>
-						<span class="help-block">{{ $errors->first('email') }}</span>
-					</div>
-					<br>
-					<div class="form-group form-md-line-input {{ $errors->has('password') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-						<input type="password" name="password" id="password" class="form-control" required autofocus >
-						<label for="password">Password :* </label>
-						<span class="help-block">{{ $errors->first('password') }}</span>
-					</div>
-					<br>
-
-					<div class="form-actions noborder">
-						<button type="submit" class="btn blue">Tambah Data Dokter</button>
-						<button type="button" class="btn default">Reset Input</button>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group form-md-line-input {{ $errors->has('nip') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<input type="number" name="nip" id="nip" class="form-control" required value="{{ old('nip') }}" autofocus autocomplete="off">
+								<label for="">NIP Dokter : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('nip') }}</p>
+							</div>
+							<div class="form-group form-md-line-input {{ $errors->has('name') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<input type="text" name="name" id="name" class="form-control" required value="{{ old('name') }}">
+								<label for="">Nama Dokter : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('name') }}</p>
+							</div>
+							<div class="form-group form-md-line-input {{ $errors->has('service') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<select name="service" class="form-control custom-select" id="service">
+									@foreach ($service as $s)
+										<option value="{{ $s->id }}" {{ old('service') == $s->id ? 'selected':'' }}>{{ $s->name }}</option>
+									@endforeach
+								</select>
+								<label for="">Poli / Spesialis : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('name') }}</p>
+							</div>
+							<div class="form-group form-md-line-input {{ $errors->has('date_of_birth') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<input type="date" name="date_of_birth" id="date_of_birth" class="form-control" required value="{{ old('date_of_birth') }}">
+								<label for="">Tanggal Lahir Dokter : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('date_of_birth') }}</p>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group form-md-line-input {{ $errors->has('phone') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<input type="text" name="phone" id="phone" class="form-control" required value="{{ old('phone') }}">
+								<label for="">No. Telfon Dokter : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('phone') }}</p>
+							</div>
+							<div class="form-group form-md-line-input {{ $errors->has('nip') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<textarea name="address" id="address" cols="5" rows="5" class="form-control" required>{{ old('address') }}</textarea>
+								<label for="">Alamat Dokter : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('nip') }}</p>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<hr>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group form-md-line-input {{ $errors->has('email') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<input type="email" name="email" id="email" class="form-control" required value="{{ old('email') }}">
+								<label for="">E-Mail Dokter : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('email') }}</p>
+							</div>
+							<div class="form-group form-md-line-input {{ $errors->has('password') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<input type="password" name="password" id="password" class="form-control" required>
+								<label for="">Password : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('password') }}</p>
+							</div>
+							<div class="form-group form-md-line-input {{ $errors->has('password_confirmation') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
+								<label for="">Konfirmasi Password : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('password_confirmation') }}</p>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group form-md-line-input {{ $errors->has('photo') ? 'has-error':'' }}" style="margin-bottom: 10px;">
+								<input type="file" name="photo" id="photo" class="form-control" value="{{ old('photo') }}">
+								<label for="">Photo Dokter : <span class="required">*</span></label>
+								<p style="color: red;">{{ $errors->first('photo') }}</p>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-success">
+								Tambah Data Dokter
+							</button>
+							<button type="reset" class="btn btn-danger">
+								Reset Input
+							</button>
+						</div>
 					</div>
 				</div>
 			</form>
@@ -93,7 +99,7 @@
 	</div>
 </div>
 <div class="col-md-12">
-	<div class="portlet light bordered">
+	<div class="portlet light">
 		<div class="portlet-title">
 			<div class="caption">
 				<span class="caption-subject bold uppercase">
@@ -108,43 +114,40 @@
 						<tr>
 							<th>#</th>
 							<th>NIP</th>
-                            <th>Nama Dokter</th>
-                            <th>Poli</th>
-                            <th>Tgl Lahir</th>
-                            <th>No Telepon</th>
-                            <th>Alamat</th>
-                            <th>Foto</th>
+                            <th>Nama</th>
+                            <th>Poli / Spesialis</th>
+                            <th>Telfon</th>
+                            <th>E-mail Dokter</th>
+							<th>Alamat</th>
 							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-						@php
-							$no = 1;
-						@endphp
 						@forelse ($doctor as $d)
 							<tr>
-								<td>{{ $no++ }}</td>
+								<td>{{ $loop->iteration }}</td>
 								<td>{{ $d->nip }}</td>
-								<td>{{ $d->name }}</td>
-								<td>{{ $d->service->name }}</td>
-								<td>{{ $d->date_of_birth }}</td>
-								<td>{{ $d->phone }}</td>
+                                <td>{{ $d->name }}</td>
+                                <td>{{ $d->service->name }}</td>
+                                <td>{{ $d->phone }}</td>
+                                <td>{{ $d->login->email }}</td>
 								<td>{{ $d->address }}</td>
-								<td><img src="{{ asset('') }}images/photo/{{ $d->photo }}" width="70px" height="70px" alt=""></td>
-								<td width="20%" colspan="2">
-									<a href="{{ route('doctors.edit', $d->id) }}" class="btn btn-warning btn-xs">Edit</a>
-
+								<td width="20%">
 									<form action="{{ route('doctors.destroy', $d->id) }}" method="post">
 										@csrf
-										@method('DELETE')  
+										@method('DELETE')
+
+										<a href="{{ route('doctors.edit', $d->id) }}" class="btn btn-warning btn-xs">
+											Edit Data
+										</a>
 										<button type="submit" class="btn btn-danger btn-xs">
-											Hapus
-										</button> 
+											Hapus Data
+										</button>
 									</form>
 								</td>
 							</tr>
 						@empty
-							
+						
 						@endforelse
 					</tbody>
 				</table>

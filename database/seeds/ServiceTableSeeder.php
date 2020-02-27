@@ -23,12 +23,7 @@ class ServiceTableSeeder extends Seeder
         ]);
 
         $service = Service::firstOrCreate([
-            'name' => 'Poli Budug',
-            'description' => 'Spesialis Jarbun'
-        ]);
-
-        $service = Service::firstOrCreate([
-            'name' => 'Poli Tht',
+            'name' => 'Poli THT',
             'description' => 'Spesialis Telinga Hidung Tenggorokan'
         ]);
 

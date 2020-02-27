@@ -23,11 +23,11 @@ class Doctor extends Model
 
     public function login()
     {
-        return $this->hasOne('App\User', 'id');
+        return $this->hasOne('App\User', 'id', 'user_id');
     }
 
     public function service()
     {
-        return $this->hasOne('App\Service', 'id');
+        return $this->hasOne('App\Service', 'id', 'service_id');
     }
 }
