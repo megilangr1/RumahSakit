@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-				'email', 'password', 'remember_token', 'email_verified_at'
+        'email', 'password', 'remember_token', 'email_verified_at'
     ];
 
     /**
@@ -46,15 +46,15 @@ class User extends Authenticatable
     public function dokter()
     {
         return $this->hasOne('App\Doctor');
-		}
-		
-		public function pasien()
-		{
-				return $this->hasOne('App\Patient');
-		}
+    }
+    
+    public function pasien()
+    {
+        return $this->hasOne('App\Patient');
+    }
 
-		public function operator()
-		{
-				return $this->hasOne('App\Operator');
-		}
+    public function operator()
+    {
+        return $this->hasOne('App\Operator');
+    }
 }

@@ -41,49 +41,7 @@ class DoctorsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nip' => 'required|numeric|unique:doctors,nip',
-            'nama' => 'required|string',
-            'service' => 'required|string',
-            'dob' => 'required|date',
-            'noHp' => 'required|numeric',
-            'address' => 'required|string',
-            'photo' => 'required', 'mimes:jpeg,png,jpg',
-            'email' => 'required', 'string', 'email', 'max:255', 'unique:users,email',
-            'password' => 'required', 'string', 'min:4',
-        ]);
-
-        try {
-            $user = User::firstOrCreate([
-                'email' => $request->email,
-                'password' => bcrypt($request->password)
-            ]);
-            $user->assignRole('dokter');
-
-            $path = public_path('images/photo');
-            $files = $request->photo;
-            $file_name = time().'.'.$files->getClientOriginalExtension();
-            $files->move($path, $file_name);
-            $input = $request->all();
-
-            Doctor::firstOrCreate([
-                'user_id' => $user->id,
-                'nip' => $request->nip,
-                'name' => $request->nama,
-                'service_id' => $request->service,
-                'date_of_birth' => $request->dob,
-                'phone' => $request->noHp,
-                'address' => $request->address,
-                'photo' => $file_name
-            ]);
-
-            session()->flash('success', 'Data Berhasil Ditambahkan !');
-            return redirect(route('doctors'));
-        } catch (\Exception $e) {
-            dd($e);
-            session()->flash('error', 'Terjadi Kesalahan !');
-            return redirect()->back();
-        }
+        
     }
 
     /**
@@ -105,16 +63,6 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {
-        try {
-            $doctor = Doctor::orderBy('created_at', 'DESC')->get();
-            $service = Service::orderBy('created_at', 'DESC')->get();
-            $edit = Doctor::findOrFail($id);
-
-            return view('admin.doctors.edit', compact('doctor', 'edit', 'service'));
-        } catch (\Exception $e) {
-            session()->flash('error', 'Terjadi Kesalahan');
-            return redirect()->back();
-        }
 
     }
 
@@ -127,32 +75,7 @@ class DoctorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $doctor = Doctor::findOrFail($id);
-            if ($request->hasFile('photo')) {
-                $path = public_path('images/photo');
-                $files = $request->photo;
-                $file_name = time().'.'.$files->getClientOriginalExtension();
-                $files->move($path, $file_name);
-                $input = $request->all();
-            }
-
-            $doctor->update([
-                'nip' => $request->nip,
-                'name' => $request->nama,
-                'service_id' => $request->service,
-                'date_of_birth' => $request->dob,
-                'phone' => $request->noHp,
-                'address' => $request->address,
-                'photo' => $file_name
-            ]);
-
-            session()->flash('success', 'Data Berhasil Ditambahkan !');
-            return redirect(route('doctors.index'));
-        } catch (\Exception $e) {
-            session()->flash('error', 'Terjadi Kesalahan');
-            return redirect()->back();
-        }
+        
     }
 
     /**
@@ -163,18 +86,6 @@ class DoctorsController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $doctor = Doctor::findOrFail($id);
-            $user = User::findOrFail($doctor->user_id);
-            File::delete('images/photo/'.$doctor->photo);
-            
-            $doctor->delete();
-            $user->delete();
-
-            session()->flash('success', 'Data Berhasil di-Hapus !');
-            return redirect(route('doctors.index'));
-        } catch (\Exception $e) {
-            return redirect()->back();
-        }
+        
     }
 }

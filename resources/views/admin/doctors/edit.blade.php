@@ -71,13 +71,6 @@
 						<span class="help-block">{{ $errors->first('photo') }}</span>
                     </div>
 					<br>
-					
-					<div class="form-group form-md-line-input {{ $errors->has('password') ? 'has-error':'error' }}" style="margin-bottom: 10px;">
-						<input value="{{ $edit->password }}" type="password" name="password" id="password" class="form-control" required autofocus >
-						<label for="password">Password :* </label>
-						<span class="help-block">{{ $errors->first('password') }}</span>
-					</div>
-					<br>
 
 					<div class="form-actions noborder">
 						<button type="submit" class="btn blue">Edit Data Dokter</button>

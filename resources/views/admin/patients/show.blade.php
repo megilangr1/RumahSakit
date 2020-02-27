@@ -118,15 +118,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label col-md-3">Email :</label>
-                            @forelse ($user as $u)
                             <div class="col-md-9">
                                 <p class="form-control-static">
-                                    {{ $u->email }}
+                                    {{-- {{ $user->email }} --}}
                                 </p>
                             </div>
-                            @empty
-                                
-                            @endforelse
                         </div>
                     </div>
                 </div>

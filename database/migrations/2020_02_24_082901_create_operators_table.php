@@ -14,15 +14,15 @@ class CreateOperatorsTable extends Migration
     public function up()
     {
         Schema::create('operators', function (Blueprint $table) {
-						$table->bigIncrements('id');
-						$table->unsignedBigInteger('user_id');
-						$table->foreign('user_id')->references('id')->on('users');
-						$table->string('nip', 18)->unique();
-						$table->string('name');
-						$table->string('date_of_birth');
-						$table->string('phone');
-						$table->text('address');
-						$table->text('photo')->nullable();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('nip', 18)->unique();
+            $table->string('name');
+            $table->string('date_of_birth');
+            $table->string('phone');
+            $table->text('address');
+            $table->text('photo')->nullable();
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class PasienSeederTable extends Seeder
         $user = User::firstOrCreate([
             'id' => 5,
             'email' => 'pasien1@gmail.com',
+            'email_verified_at' => date('Y-m-d'),
             'password' => bcrypt('admin')
         ]);
         $user->assignRole('pasien');
@@ -33,6 +34,7 @@ class PasienSeederTable extends Seeder
         $user = User::firstOrCreate([
             'id' => 6,
             'email' => 'pasien2@gmail.com',
+            'email_verified_at' => date('Y-m-d'),
             'password' => bcrypt('admin')
         ]);
         $user->assignRole('pasien');
