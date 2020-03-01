@@ -13,6 +13,7 @@
 					Form Operator
 				</span>
 			</div>
+			
 		</div>
 		<div class="portlet-body form">
 			<form action="{{ route('operators.store') }}" method="post" enctype="multipart/form-data">
@@ -97,6 +98,9 @@
 					Data Operator
 				</span>
 			</div>
+			<a href="view_printO" class="btn btn-primary pull-right">
+				Print Data Operator
+			</a>
 		</div>
 		<div class="portlet-body">
 			<div class="table-responsive">

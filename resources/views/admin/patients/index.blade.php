@@ -21,6 +21,9 @@
 					Data Pasien
 				</span>
 			</div>
+			<a href="view_printP" class="btn btn-primary pull-right">
+				Print Data Pasien
+			</a>
 		</div>
 		<div class="portlet-body">
 			<div class="table-responsive">

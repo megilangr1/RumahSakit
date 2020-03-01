@@ -12,7 +12,7 @@ class Patient extends Model
 		
 		public function login()
     {
-        return $this->hasOne('App\User', 'id');
+        return $this->hasOne('App\User', 'id', 'user_id');
 		}
 
 		public function regist()

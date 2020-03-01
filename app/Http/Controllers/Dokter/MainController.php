@@ -11,6 +11,7 @@ use App\Prescription;
 use App\WaitingList;
 use Illuminate\Support\Facades\Auth;
 use Cart;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
@@ -21,7 +22,7 @@ class MainController extends Controller
 			if (Auth::user()->roles->first()->name == 'dokter') {
 				$user = Auth::user();
 				$wl = WaitingList::where('doctor_id', '=', $user->dokter->id)->orderBy('id', 'ASC')->get();
-				return view('dokter.main', compact('wl'));
+				return view('dokter.main', compact('wl', 'user'));
 			} else {
 				Auth::logout();
 				return redirect(route('dokter.login'));
@@ -95,5 +96,12 @@ class MainController extends Controller
 	public function add()
 	{
 		//
+	}
+
+	public function view_print()
+	{
+		echo "OK";
+		// $cu = CheckUp::all();
+		// return view('dokter.viewLaporan', compact('cu'));
 	}
 }

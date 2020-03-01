@@ -43,9 +43,16 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::resource('doctors', 'Admin\DoctorsController');
 			Route::resource('patients', 'Pasien\PasienController');
 			Route::resource('operators', 'Admin\OperatorController');
+			Route::get('view_printD', 'Admin\DoctorsController@view_print');
+			Route::get('printD', 'Admin\DoctorsController@print');
+			Route::get('view_printP', 'Pasien\PasienController@view_print');
+			Route::get('printP', 'Pasien\PasienController@print');
+			Route::get('view_printO', 'Operator\MainController@view_print');
+			Route::get('printO', 'Operator\MainController@print');
 		});
 	}); 
 });
+
 
 Route::group(['prefix' => 'operator'], function () {
 	Route::get('/', 'Operator\MainController@index')->name('operator.index');
@@ -56,6 +63,8 @@ Route::group(['prefix' => 'operator'], function () {
 		Route::get('/pendaftaran/{number}/next', 'Operator\MainController@registDetail')->name('operator.next');
 		Route::post('/pendaftaran', 'Operator\MainController@assignWL')->name('operator.assign');
 	});
+	Route::get('view_printO', 'Operator\MainController@view_print');
+	Route::get('printO', 'Operator\MainController@print');
 });
 
 Route::group(['prefix' => 'dokter'], function () {
@@ -71,4 +80,5 @@ Route::group(['prefix' => 'dokter'], function () {
 		Route::post('/diagnosa/get', 'Dokter\DiagnoseController@get')->name('diagnose.get');
 		Route::post('/diagnosa/delete', 'Dokter\DiagnoseController@delete')->name('diagnose.delete');
 	});
+	Route::get('viewPemeriksaan', 'Dokter.MainController@view_print');
 });

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Operator;
 
 use App\Doctor;
+use App\Operator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Registration;
 use App\WaitingList;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class MainController extends Controller
 {
@@ -65,10 +67,33 @@ class MainController extends Controller
 
 			session()->flash('success', 'Pasien Di-Pindahkan ke Antrian Dokter.');
 			return redirect(route('operator.regist'));
-		} catch (\Throwable $th) {
+		} catch (\Exception $e) {
 			session()->flash('error', 'Terjadi Kesalahan !');
 			return redirect()->back();
 		}
-
 	}
+
+	public function view_print()
+    {
+        try {
+            $operator = Operator::all();
+            return view('admin.operators.viewLaporan', compact('operator'));
+        } catch (\Exception $e) {
+            session()->flash('Terjadi Kesalahan !');
+			return redirect()->back();
+        }
+    }
+
+    public function print()
+    {
+        try {
+            $operator = Operator::all();
+            $pdf = PDF::loadview('admin.operators.printLaporan', compact('operator'));
+            return $pdf->download('laporan_data_operator_pdf');
+
+        } catch (\Exception $e) {
+            session()->flash('Terjadi Kesalahan !');
+			return redirect()->back();
+        }
+    }
 }

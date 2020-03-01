@@ -60,41 +60,9 @@
           <ul>
             <li><a href="{{ url('/') }}">Halaman Utama</a></li>
 
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                Layanan Rumah Sakit
-              </a>
-                
-              <ul class="dropdown-menu">
-                @foreach ($services as $item)
-                  <li><a href="{{ route('service.detail', str_replace(' ','-', $item->name)) }}">{{ $item->name }}</a></li>                    
-                @endforeach
-                
-                {{-- <li class="dropdown-submenu">
-                  <a href="index.html">Multi level <i class="fa fa-angle-right"></i></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="index.html">Second Level Link</a></li>
-                    <li><a href="index.html">Second Level Link</a></li>
-                    <li class="dropdown-submenu">
-                      <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                        Second Level Link 
-                        <i class="fa fa-angle-right"></i>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="index.html">Third Level Link</a></li>
-                        <li><a href="index.html">Third Level Link</a></li>
-                        <li><a href="index.html">Third Level Link</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li> --}}
-              </ul>
-            </li> 
-            <li><a href="#">Dokter Kami</a></li>
-
             <li><a href="{{ route('rawat.jalan') }}">Pendaftaran Rawat Jalan</a></li> 
 
-            <li class="menu-search">
+            {{-- <li class="menu-search">
               <span class="sep"></span>
               <i class="fa fa-search search-btn"></i>
               <div class="search-box">
@@ -107,7 +75,7 @@
                   </div>
                 </form>
               </div> 
-            </li>
+            </li> --}}
           </ul>
         </div>
       </div>

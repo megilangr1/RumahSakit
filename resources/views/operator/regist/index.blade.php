@@ -10,6 +10,7 @@
                     Data Pasien Pendaftaran Rawat Jalan
                 </span>
             </div>
+            
         </div>
         <div class="portlet-body">
             <div class="table-responsive">
@@ -33,7 +34,7 @@
                             <td>{{ date('d-m-Y', strtotime($d->regist_date)) }} {{ $d->regist_date == date('Y-m-d') ? '(Hari Ini)':'' }}</td>
                             <td>{{ date('d-m-Y', strtotime($d->expired_date)) }}</td>
                             <td width="20%" colspan="2">
-															<a href="{{ route('operator.next', $d->number) }}" class="btn btn-info btn-xs">Lanjutkan</a>
+                                <a href="{{ route('operator.next', $d->number) }}" class="btn btn-info btn-xs">Lanjutkan</a>
                             </td>
                         </tr>
                         @empty

@@ -106,6 +106,9 @@
 					Data Dokter
 				</span>
 			</div>
+			<a href="view_printD" class="btn btn-primary pull-right">
+				Print Data Dokter
+			</a>
 		</div>
 		<div class="portlet-body">
 			<div class="table-responsive">
@@ -128,7 +131,7 @@
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $d->nip }}</td>
                                 <td>{{ $d->name }}</td>
-                                <td>{{ $d->service->name }}</td>
+                                <td>{{ $d->date_of_birth }}</td>
                                 <td>{{ $d->phone }}</td>
                                 <td>{{ $d->login->email }}</td>
 								<td>{{ $d->address }}</td>

@@ -27,6 +27,9 @@
 					<li class="{{ Request::is('admin/operators*') ? 'active':'' }}">
 						<a href="{{ route('operators.index') }}"> <i class="fa fa-cogs"></i> Manajemen Operator</a>
 					</li>
+					{{-- <li class="{{ Request::is('laporan*') ? 'active':'' }}">
+						<a href="{{ route('laporan.index') }}"> <i class="fa fa-cogs"></i> Manajemen Laporan</a>
+					</li> --}}
 				</ul>
 			</li>
 		</ul>

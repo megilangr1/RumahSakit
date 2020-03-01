@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Service;
 use App\Doctor;
 use App\User;
-use App\Service;
+use PDF;
+use Carbon\Carbon;
 
 class DoctorsController extends Controller
 {
@@ -177,5 +179,30 @@ class DoctorsController extends Controller
 			session()->flash('Terjadi Kesalahan !');
 			return redirect()->back();
 		}
+    }
+
+    public function view_print()
+    {
+        try {
+            $doctor = Doctor::all();
+            return view('admin.doctors.viewLaporan', compact('doctor'));
+        } catch (\Exception $e) {
+            session()->flash('Terjadi Kesalahan !');
+			return redirect()->back();
+        }
+    }
+
+    public function print()
+    {
+        try {
+            $doctor = Doctor::all();
+            $pdf = PDF::loadview('admin.doctors.printLaporan', compact('doctor'));
+            return $pdf->download('laporan_data_dokter_pdf');
+
+        } catch (\Exception $e) {
+            session()->flash('Terjadi Kesalahan !');
+			return redirect()->back();
+        }
+       
     }
 }

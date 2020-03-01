@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="col-md-6">
+    <h3>Selamat Datang <b><u>{{ auth()->user()->dokter->name }}</u></b></h3>
     <div class="portlet light bordered">
         <div class="portlet-title">
             <div class="caption">
@@ -9,6 +10,7 @@
                     Antrian Pasien
                 </span>
             </div>
+            <a href="viewPemeriksaan" class="btn btn-success" style="float: right">Printout Data Pemeriksaan</a>
         </div>
         <div class="portlet-body">
             <div class="table-responsive">
@@ -26,7 +28,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $d->pasien->name }}</td>
                             <td width="20%">
-															<a href="{{ route('dokter.check', $d->id) }}" class="btn btn-info btn-xs">Periksa</a>
+                                <a href="{{ route('dokter.check', $d->id) }}" class="btn btn-info btn-xs">Periksa</a>
                             </td>
                         </tr>
                         @empty
