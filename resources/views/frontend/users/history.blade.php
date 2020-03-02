@@ -27,26 +27,12 @@
 							<td>{{ $item->check_date }}</td>
 							<td>{{ $item->dokter->name }}</td>
 							<td>{{ $item->dokter->service->name }}</td>
+							<td>Total Diagnosa : {{ count($item->diagnosa) }}</td>
+							<td>Total Obat : {{ count($item->obat) }}</td>
 							<td align="center">
-								@if (now() > $item->expired_date)
-								<form action="{{ route('delete.rawat.jalan', $item->id) }}" method="post">
-									@csrf
-									@method('DELETE')
-									<button type="submit" class="btn btn-danger btn-xs">
-										Hapus
-									</button>
-								</form>
-								@else
-									@if ($item->status == '0')
-										<a href="{{ route('code.rawat.jalan', $item->id) }}" class="btn btn-info btn-xs" style="color: #fff;">
-											Lihat
-										</a>
-									@else
-										<button class="btn btn-success btn-xs">
-											Sudah di-Pakai
-										</button>
-									@endif
-								@endif
+								<a href="{{ route('user.history.detail', $item->id) }}" class="btn btn-info btn-xs">
+									Detail
+								</a>
 							</td>
 						</tr>
 					@empty

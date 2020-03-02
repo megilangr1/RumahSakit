@@ -240,6 +240,18 @@ class UsersController extends Controller
 
 				return view('frontend.users.history', compact('check', 'services'));
 			} catch (\Exception $e) {
+				dd($e);
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
+
+		public function historyDetail($id)
+		{
+			try {
+				$user = Auth::user();
+				
+			} catch (\Exception $e) {
 				session()->flash('error', 'Terjadi Kesalahan !');
 				return redirect()->back();
 			}

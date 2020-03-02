@@ -26,6 +26,7 @@ Route::get('/users/register', 'Frontend\UsersController@register')->name('user.r
 Route::post('/users/register', 'Frontend\UsersController@regist')->name('user.regist');
 Route::get('/users/main', 'Frontend\UsersController@main')->name('user.main');
 Route::get('/users/history', 'Frontend\UsersController@history')->name('user.history');
+Route::get('/users/history/{$id}/detail', 'Frontend\UsersController@historyDetail')->name('user.history.detail');
 
 Route::get('/users/{token}/verif-email', 'Frontend\UsersController@verifEmail');
 

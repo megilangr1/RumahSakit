@@ -24,4 +24,9 @@ class CheckUp extends Model
 	{
 		return $this->hasMany('App\Diagnosis');
 	}
+
+	public function obat()
+	{
+		return $this->hasMany('App\Prescription');
+	}
 }
