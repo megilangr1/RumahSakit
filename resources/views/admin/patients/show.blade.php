@@ -19,7 +19,8 @@
             <i class="icon-equalizer font-green-haze"></i>
             <span class="caption-subject font-green-haze bold uppercase">Data Detail Pasien</span>
         </div>
-        <div class="tools">
+        
+        <div class="tools" style="margin-left: 5px; margin-right: 5px">
             <a href="" class="collapse">
             </a>
             <a href="#portlet-config" data-toggle="modal" class="config">
@@ -29,6 +30,9 @@
             <a href="" class="remove">
             </a>
         </div>
+        <a href="{{ route('pasiens.create') }}" class="btn btn-primary pull-right">
+            Print Data Pasien
+        </a>
     </div>
     <div class="portlet-body form">
         <!-- BEGIN FORM-->
@@ -111,21 +115,22 @@
                     <!--/span-->
                 </div>
                 <!--/row-->
-                @empty
-                    
-                @endforelse
+                
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label col-md-3">Email :</label>
                             <div class="col-md-9">
                                 <p class="form-control-static">
-                                    {{-- {{ $user->email }} --}}
+                                    {{ $p->login->email }}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
+                @empty
+                    
+                @endforelse
             </div>
             <div class="form-actions">
                 <div class="row">

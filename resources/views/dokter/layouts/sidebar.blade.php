@@ -4,7 +4,7 @@
 				<li class="start {{ Request::is('dokter') ? 'active':'' }}">
 						<a href="{{ route('dokter.index') }}"><i class="fa fa-home"></i> <span class="title"> Halaman Utama </span></a>
 				</li>
-				<li class="{{ Request::is('dokter/pendaftaran*') ? 'active':'' }}">
+				<li class="{{ Request::is('dokter/pendaftaran*' || 'dokter/pendaftaran') ? 'active':'' }}">
 					<a href="javascript:;">
 						<i class="icon-home"></i>
 						<span class="title">Dokter Menu</span>

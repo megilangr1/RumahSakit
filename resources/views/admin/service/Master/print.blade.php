@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Printout Laporan Operator</title>
+    <title>Printout Laporan Dokter</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 		}
 	</style>
     <center>
-        <h4 class="mt-3">Laporan Data Operator Rumah Sakit Bhayangkara</h4>
+        <h4 class="mt-3">Laporan Data Dokter Rumah Sakit Bhayangkara</h4>
     </center>
     <hr>
     <p>Tanggal Dibuat : {{ date('d-m-Y') }}</p>
@@ -31,29 +31,22 @@
                 <th>No</th>
                 <th>NIP</th>
                 <th>Nama</th>
-                <th>Tgl Lahir</th>
-                <th>Telfon</th>
-                <th>E-Mail Operator</th>
-                <th>Alamat</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $no = 1;
             @endphp
-            @forelse ($operator as $o)
+            @forelse ($doctor as $d)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $o->nip }}</td>
-                    <td>{{ $o->name }}</td>
-                    <td>{{ $o->date_of_birth }}</td>
-                    <td>{{ $o->phone }}</td>
-                    <td>{{ $o->login->email }}</td>
-                    <td>{{ $o->address }}</td>
+                    <td>{{ $d->nip }}</td>
+                    <td>{{ $d->name }}</td>
+                    <td>{{ $d->name }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="alert alert-danger text-center"><i>Belum Ada Data Operator</i></td>
+                    <td colspan="7" class="alert alert-danger text-center"><i>Belum Ada Data Dokter</i></td>
                 </tr>
             @endforelse
         </tbody>

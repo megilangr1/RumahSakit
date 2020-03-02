@@ -21,9 +21,7 @@
 					Data Pasien
 				</span>
 			</div>
-			<a href="view_printP" class="btn btn-primary pull-right">
-				Print Data Pasien
-			</a>
+			<a href="{{ route('pasiens.index') }}" class="btn btn-success pull-right">Print Data Pasien</a>
 		</div>
 		<div class="portlet-body">
 			<div class="table-responsive">
@@ -51,8 +49,9 @@
 								<td>{{ $p->date_of_birth }}</td>
 								<td>{{ $p->phone }}</td>
 								<td>{{ $p->address }}</td>
-								<td width="20%" colspan="2">
+								<td width="20%" class="text-center" colspan="2">
 									<a href="{{ route('patients.show',$p->id) }}" class="btn btn-warning btn-xs">Detail Pasien</a>
+									{{-- <a href="{{ route('pasienns.index',$p->id) }}" class="btn btn-danger btn-xs">Print Detail Pasien</a> --}}
 								</td>
 							</tr>
 						@empty

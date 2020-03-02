@@ -22,8 +22,8 @@
         <h4 class="mt-3">Laporan Data Pasien Rumah Sakit Bhayangkara</h4>
     </center>
     <hr>
-    <p>Tanggal Dibuat : {{ date('d-m-Y') }}</p>
-    <p>Waktu Dibuat : </p>
+        <p>Tanggal Dibuat : {{ date('d-m-Y') }}</p>
+        <p>Waktu Dibuat : {{ date('H:i:s') }}</p>
     <hr>
     <table class="table table-bordered">
         <thead class="thead-dark">

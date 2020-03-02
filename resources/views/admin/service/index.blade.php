@@ -53,6 +53,7 @@
 					Data Poli
 				</span>
 			</div>
+			<a href="{{ route('printP.index') }}" class="btn btn-success" style="float: right">Print Data Poli</a>
 		</div>
 		<div class="portlet-body">
 			<div class="table-responsive">

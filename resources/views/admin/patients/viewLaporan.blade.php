@@ -17,11 +17,11 @@
             <h4 class="mt-3">Laporan Data Pasien Rumah Sakit Bhayangkara</h4>
         </center>
         <hr>
-        <p>Tanggal Dibuat : {{ date('d - m - Y') }}</p>
-        <p>Waktu Dibuat : </p>
+        <p>Tanggal Dibuat : {{ date('d-m-Y') }}</p>
+        <p>Waktu Dibuat : {{ date('H:i:s') }}</p>
         <div class="row">
             <div class="col-md-10 offset-1">
-                <a href="printP" class="col-md-2 btn btn-success">Printout PDF</a>
+                <a href="{{ route('pasiens.create') }}" class="col-md-2 btn btn-success">Printout PDF</a>
                 <a href="{{ route('patients.index') }}" class="col-md-4 btn btn-danger" style="float: right;">Kembali Ke Halaman Sebelumnya</a>
                 <hr>
                 <table class="table table-bordered">
