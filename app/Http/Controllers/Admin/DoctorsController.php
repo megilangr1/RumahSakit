@@ -196,9 +196,9 @@ class DoctorsController extends Controller
     {
         try {
             $doctor = Doctor::all();
-						$pdf = PDF::loadview('admin.doctors.printLaporan', compact('doctor'));
-						return $pdf->stream();
-            // return $pdf->download('laporan_data_dokter_pdf.pdf');
+            $pdf = PDF::loadview('admin.doctors.printLaporan', compact('doctor'));
+            
+            return $pdf->stream();
 
         } catch (\Exception $e) {
             session()->flash('Terjadi Kesalahan !');

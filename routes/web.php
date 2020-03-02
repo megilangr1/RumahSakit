@@ -40,16 +40,15 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::get('/', 'Admin\MainController@index')->name('admin.index');
 			Route::resource('pasiens', 'Admin\MasterPasien\MainController');
 			Route::resource('pasienns', 'Admin\MasterPasien\DetailController');
+			Route::resource('operatorr', 'Admin\MasterOperator\MainController');
 			Route::resource('roles', 'Admin\RoleController');
 			Route::resource('services', 'Admin\ServiceController');
 			Route::resource('doctors', 'Admin\DoctorsController');
 			Route::resource('patients', 'Pasien\PasienController');
 			Route::resource('operators', 'Admin\OperatorController');
+			Route::resource('printP', 'Print\PoliController');
 			Route::get('view_printD', 'Admin\DoctorsController@view_print');
 			Route::get('printD', 'Admin\DoctorsController@print');
-			Route::get('view_printO', 'Operator\MainController@view_print');
-			Route::get('printO', 'Operator\MainController@print');
-			Route::resource('printP', 'Print\PoliController');
 		});
 	}); 
 });

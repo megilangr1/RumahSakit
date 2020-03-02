@@ -21,7 +21,7 @@
         <p>Waktu Dibuat : {{ date('H:i:s') }}</p>
         <div class="row">
             <div class="col-md-10 offset-1">
-                <a href="printO" class="col-md-2 btn btn-success">Printout PDF</a>
+                <a href="{{ route('operatorr.create') }}" class="col-md-2 btn btn-success" target="_blank">Printout PDF</a>
                 <a href="{{ route('operator.index') }}" class="col-md-4 btn btn-danger" style="float: right;">Kembali Ke Halaman Sebelumnya</a>
                 <hr>
                 <table class="table table-bordered">

@@ -26,36 +26,11 @@ class MainController extends Controller
         try {
             $pasien = Patient::all();
             $pdf = PDF::loadview('admin.patients.printLaporan', compact('pasien'));
-            return $pdf->download('laporan_data_pasien_pdf');
-
+            return $pdf->stream();
         } catch (\Exception $e) {
             session()->flash('Terjadi Kesalahan !');
 			return redirect()->back();
         }
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }
