@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\CheckUp;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\VerifyPatient;
@@ -223,6 +224,20 @@ class UsersController extends Controller
 
 				session()->flash('success', 'Berhasil Mendaftar Rawat Jalan.');				
 				return redirect(route('code.rawat.jalan'));
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
+
+		public function history()
+		{
+			try {
+				$user = Auth::user();
+				$services = Service::orderBy('name', 'DESC')->get();
+				$check = CheckUp::where('patient_id', '=', $user->pasien->id)->get();
+
+				return view('frontend.users.history', compact('check', 'services'));
 			} catch (\Exception $e) {
 				session()->flash('error', 'Terjadi Kesalahan !');
 				return redirect()->back();
