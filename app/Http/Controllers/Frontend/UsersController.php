@@ -40,17 +40,12 @@ class UsersController extends Controller
 				$login = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 				if ($login == true) {
 					$user = User::where('email', '=', $request->email)->firstOrFail();
-					if ($user->email_verified_at == 'null') {
-						session()->flash('mustVerif', 'Akun anda belum di-Verifikasi ! Silahkan verifikasi terlebih dahulu');
-						return redirect(route('user.login'));
+					if ($user->roles->first()->name == 'pasien') {
+						$log = Auth::loginUsingId($user->id, TRUE);
+						return redirect(route('user.main'));
 					} else {
-						if ($user->roles->first()->name == 'pasien') {
-							$log = Auth::loginUsingId($user->id, TRUE);
-							return redirect(route('user.main'));
-						} else {
-							session()->flash('fail', 'User Anda Tidak Dapat di-Gunakan !');
-							return redirect(route('user.login'));
-						}
+						session()->flash('fail', 'User Anda Tidak Dapat di-Gunakan !');
+						return redirect(route('user.login'));
 					}
 				} else {
 					session()->flash('fail', 'E-Mail / Password Salah !');
@@ -85,11 +80,9 @@ class UsersController extends Controller
         ]);
 
         try {
-            $token = md5(now());
             $user = User::firstOrCreate([
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'remember_token' => $token
+								'password' => bcrypt($request->password),
             ]);
             $user->assignRole('pasien');
 
@@ -102,8 +95,6 @@ class UsersController extends Controller
                 'address' => $request->address,
                 'photo' => null
             ]);
-
-            $mail = Mail::to($request->email)->send(new VerifyPatient($user, $token));
 
             session()->flash('success', 'Berhasil Melakukan Registrasi ! Silahkan Lanjutkan dengan Cara Mengkonfirmasi E-Mail !');
             return redirect(route('user.register'));
