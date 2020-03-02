@@ -102,7 +102,7 @@ class DoctorsController extends Controller
 
             $doctor = Doctor::findOrFail($id);
             if ($request->nip != $doctor->nip) {
-                $this->validate([
+                $this->validate($request, [
                     'nip' => 'required|numeric|unique:doctors,nip',
                 ]);
                 $nip = $request->nip;
@@ -196,13 +196,13 @@ class DoctorsController extends Controller
     {
         try {
             $doctor = Doctor::all();
-            $pdf = PDF::loadview('admin.doctors.printLaporan', compact('doctor'));
-            return $pdf->download('laporan_data_dokter_pdf');
+						$pdf = PDF::loadview('admin.doctors.printLaporan', compact('doctor'));
+						return $pdf->stream();
+            // return $pdf->download('laporan_data_dokter_pdf.pdf');
 
         } catch (\Exception $e) {
             session()->flash('Terjadi Kesalahan !');
 			return redirect()->back();
         }
-       
     }
 }
