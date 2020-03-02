@@ -12,6 +12,7 @@ use App\Service;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class UsersController extends Controller
 {
@@ -250,7 +251,11 @@ class UsersController extends Controller
 		{
 			try {
 				$user = Auth::user();
+				$check = CheckUp::where('patient_id', '=', $user->pasien->id)->where('id', '=', $id)->firstOrFail();
 				
+				$pdf = PDF::loadview('frontend.users.historydetail', compact('check'));
+        // return view('frontend.users.historydetail', compact('check'));
+				return $pdf->stream();
 			} catch (\Exception $e) {
 				session()->flash('error', 'Terjadi Kesalahan !');
 				return redirect()->back();

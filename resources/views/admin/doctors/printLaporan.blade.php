@@ -19,7 +19,7 @@
 		}
 	</style>
     <center>
-        <h4 class="mt-3">Laporan Data Dokter Rumah Sakit Bhayangkara</h4>
+        <h4 class="mt-3">Laporan Pemeriksaan</h4>
     </center>
     <hr>
     <p>Tanggal Dibuat : {{ date('d-m-Y') }}</p>

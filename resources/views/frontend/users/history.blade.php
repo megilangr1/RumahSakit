@@ -30,7 +30,7 @@
 							<td>Total Diagnosa : {{ count($item->diagnosa) }}</td>
 							<td>Total Obat : {{ count($item->obat) }}</td>
 							<td align="center">
-								<a href="{{ route('user.history.detail', $item->id) }}" class="btn btn-info btn-xs">
+								<a href="{{ route('user.history.detail', $item->id) }}" target="_blank" class="btn btn-info btn-xs">
 									Detail
 								</a>
 							</td>
