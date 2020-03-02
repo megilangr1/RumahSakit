@@ -5,31 +5,29 @@ namespace App\Http\Controllers\Dokter\MasterDokter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\CheckUp;
-
+use App\User;
+use PDF;
 
 class MainController extends Controller
 {
     public function index()
     {
-        
+        try {
+            $user = auth()->user->doctor_id;
+            $cek = CheckUp::where('doctor_id', '=', $user->dokter->id)->get();
+
+            return view('dokter.riwayat', compact('cek'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan !');
+			return redirect()->back();
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //

@@ -33,7 +33,6 @@ class DoctorsController extends Controller
 			'email' => 'required|email|unique:users,email',
 			'password' => 'required|confirmed|min:4'
         ]);
-        // dd($request->all());
 
         try {
             $user = User::firstOrCreate([

@@ -76,8 +76,8 @@ Route::group(['prefix' => 'dokter'], function () {
 	Route::group(['middleware' => ['role:dokter']], function () {
 		Route::get('/check/{id}', 'Dokter\MainController@check')->name('dokter.check');
 		Route::post('/checked', 'Dokter\MainController@checked')->name('dokter.checked');
-		Route::resource('riwayat', 'Dokter\RiwayatController');
-		
+		Route::resource('riwayat', 'Dokter\MasterDokter\MainController');
+
 		// Ajax Route 
 		Route::post('/diagnosa/add', 'Dokter\DiagnoseController@add')->name('diagnose.add');
 		Route::post('/diagnosa/get', 'Dokter\DiagnoseController@get')->name('diagnose.get');
