@@ -38,7 +38,6 @@ class MainController extends Controller
 			$wl = WaitingList::findOrFail($id);
 			$user = Auth::user();
 			$cart = Cart::session($user->id);
-			// dd($cart->getContent());
 			return view('dokter.check.show', compact('wl', 'cart'));
 		} catch (\Exception $e) {
 			dd($e);
@@ -91,17 +90,5 @@ class MainController extends Controller
 			session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Dalam Beberapa Menit.');
 			return redirect()->back();
 		}
-	}
-
-	public function add()
-	{
-		//
-	}
-
-	public function view_print()
-	{
-		echo "OK";
-		// $cu = CheckUp::all();
-		// return view('dokter.viewLaporan', compact('cu'));
 	}
 }
