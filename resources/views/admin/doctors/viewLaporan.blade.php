@@ -21,7 +21,7 @@
         <p>Waktu Dibuat : </p>
         <div class="row">
             <div class="col-md-10 offset-1">
-                <a href="printD" class="col-md-2 btn btn-success">Printout PDF</a>
+                <a href="printD" class="col-md-2 btn btn-success" target="_blank">Printout PDF</a>
                 <a href="{{ route('doctors.index') }}" class="col-md-4 btn btn-danger" style="float: right;">Kembali Ke Halaman Sebelumnya</a>
                 <hr>
                 <table class="table table-bordered">
