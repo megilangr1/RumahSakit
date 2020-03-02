@@ -48,30 +48,5 @@ class PasienController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function view_print()
-    {
-        try {
-            $pasien = Patient::all();
-            return view('admin.patients.viewLaporan', compact('pasien'));
-        } catch (\Exception $e) {
-            session()->flash('Terjadi Kesalahan !');
-			return redirect()->back();
-        }
-    }
-
-    public function print()
-    {
-        try {
-            $pasien = Patient::all();
-            $pdf = PDF::loadview('admin.patients.printLaporan', compact('pasien'));
-            return $pdf->download('laporan_data_pasien_pdf');
-
-        } catch (\Exception $e) {
-            session()->flash('Terjadi Kesalahan !');
-			return redirect()->back();
-        }
-       
-    }
+    }    
 }

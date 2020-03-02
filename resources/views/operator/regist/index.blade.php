@@ -10,7 +10,7 @@
                     Data Pasien Pendaftaran Rawat Jalan
                 </span>
             </div>
-            
+            <a href="{{ route('printsO.index') }}" class="btn btn-success" style="float: right">Printout Data Pendaftaran</a>
         </div>
         <div class="portlet-body">
             <div class="table-responsive">

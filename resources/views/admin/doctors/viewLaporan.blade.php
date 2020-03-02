@@ -18,7 +18,7 @@
         </center>
         <hr>
         <p>Tanggal Dibuat : {{ date('d - m - Y') }}</p>
-        <p>Waktu Dibuat : </p>
+        <p>Waktu Dibuat : {{ date('H:i:s') }}</p>
         <div class="row">
             <div class="col-md-10 offset-1">
                 <a href="printD" class="col-md-2 btn btn-success" target="_blank">Printout PDF</a>

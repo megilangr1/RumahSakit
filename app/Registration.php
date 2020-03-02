@@ -19,4 +19,9 @@ class Registration extends Model
 		{
 			return $this->hasOne('App\Service', 'id', 'service_id');
 		}
+
+		public function diagnosa()
+		{
+			// return $this->hasOne('App\Diagnosis', 'id', '');
+		}
 }

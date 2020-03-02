@@ -72,28 +72,4 @@ class MainController extends Controller
 			return redirect()->back();
 		}
 	}
-
-	public function view_print()
-    {
-        try {
-            $operator = Operator::all();
-            return view('admin.operators.viewLaporan', compact('operator'));
-        } catch (\Exception $e) {
-            session()->flash('Terjadi Kesalahan !');
-			return redirect()->back();
-        }
-    }
-
-    public function print()
-    {
-        try {
-            $operator = Operator::all();
-            $pdf = PDF::loadview('admin.operators.printLaporan', compact('operator'));
-            return $pdf->download('laporan_data_operator_pdf');
-
-        } catch (\Exception $e) {
-            session()->flash('Terjadi Kesalahan !');
-			return redirect()->back();
-        }
-    }
 }

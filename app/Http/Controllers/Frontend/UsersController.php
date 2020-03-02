@@ -190,6 +190,7 @@ class UsersController extends Controller
 				session()->flash('success', 'Berhasil Mendaftar Rawat Jalan.');
 				return redirect(route('code.rawat.jalan', $regist->id));
 			} catch (\Exception $e) {
+				dd($request->all());
 				session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Dalam Beberapa Saat !');				
 				return redirect()->back();
 			}

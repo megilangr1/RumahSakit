@@ -131,7 +131,7 @@
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $d->nip }}</td>
                                 <td>{{ $d->name }}</td>
-                                <td>{{ $d->date_of_birth }}</td>
+                                <td>{{ $d->service->name }}</td>
                                 <td>{{ $d->phone }}</td>
                                 <td>{{ $d->login->email }}</td>
 								<td>{{ $d->address }}</td>

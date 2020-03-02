@@ -173,9 +173,4 @@ class OperatorController extends Controller
 			return redirect()->back();
 		}
 	}
-	
-	public function print()
-	{
-		# code...
-	}
 }

@@ -98,7 +98,7 @@
 					Data Operator
 				</span>
 			</div>
-			<a href="view_printO" class="btn btn-primary pull-right">
+			<a href="{{ route('operatorr.index') }}" class="btn btn-primary pull-right">
 				Print Data Operator
 			</a>
 		</div>
