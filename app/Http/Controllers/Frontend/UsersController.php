@@ -98,7 +98,7 @@ class UsersController extends Controller
                 'photo' => null
             ]);
 
-            session()->flash('success', 'Berhasil Melakukan Registrasi ! Silahkan Lanjutkan dengan Cara Mengkonfirmasi E-Mail !');
+            session()->flash('success', 'Berhasil Melakukan Registrasi !');
             return redirect(route('user.register'));
         } catch (\Exception $e) {
             session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Dalam Beberapa Saat !');
@@ -188,7 +188,7 @@ class UsersController extends Controller
 					'expired_date' => date('Y-m-d', strtotime($request->regist_date.'+ 1 days'))
 				]);
 				
-				session()->flash('success', 'Berhasil Mendaftar Rawat Jalan.');
+				session()->flash('success', 'Berhasil Mendaftar Rawat Jalan ! Silahkan Tunjukan Kepada Operator / Resepsionis !');
 				return redirect(route('code.rawat.jalan', $regist->id));
 			} catch (\Exception $e) {
 				dd($request->all());

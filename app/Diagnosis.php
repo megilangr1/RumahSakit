@@ -12,6 +12,6 @@ class Diagnosis extends Model
 
 	public function checkup()
 	{
-		return $this->belongsTo('App\CheckUp');
+		return $this->hasMany('App\CheckUp');
 	}
 }

@@ -18,6 +18,9 @@
 			{{ session('success') }}
 		</div>
 		@endif
+		{{-- <div class="col-md-offset-4" style="margin-bottom: 5px">
+			<a href="{{ route('print_pendaftaran.index') }}" style="margin-left: 40px" class="btn btn-success">Print Nomor Pendaftaran</a>
+		</div> --}}
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 text-center" style="border: 0.1rem solid #000000; padding: 15px 15px;">
 				<div class="row">

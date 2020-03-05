@@ -101,7 +101,7 @@ class ServiceController extends Controller
                 'description' => $request->description
             ]);
 
-            session()->flash('success', 'Data Berhasil Ditambahkan !');
+            session()->flash('success', 'Data Berhasil Diubah !');
             return redirect(route('services.index'));
         } catch (\Exception $e) {
             dd($e);

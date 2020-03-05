@@ -13,7 +13,7 @@
 				</a>
 				<ul class="sub-menu">
 					<li>
-						<a href="{{ route('riwayat.index') }}">Riwayat Pemeriksaan Pasien</a>
+						<a href="{{ route('riwayatt.index') }}">Riwayat Pemeriksaan Pasien</a>
 					</li>
 				</ul>
 			</li>

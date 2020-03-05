@@ -10,7 +10,6 @@
                     Antrian Pasien
                 </span>
             </div>
-            <a href="viewPemeriksaan" class="btn btn-success" style="float: right">Printout Data Pemeriksaan</a>
         </div>
         <div class="portlet-body">
             <div class="table-responsive">

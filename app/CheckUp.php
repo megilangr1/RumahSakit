@@ -22,7 +22,7 @@ class CheckUp extends Model
 
 	public function diagnosa()
 	{
-		return $this->hasMany('App\Diagnosis');
+		return $this->belongsTo('App\Diagnosis', 'id', 'check_up_id');
 	}
 
 	public function obat()
