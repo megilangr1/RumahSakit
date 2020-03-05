@@ -86,12 +86,12 @@ class DoctorsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|string',
-            'service' => 'required|string',
-			'date_of_birth' => 'required|date',
-			'phone' => 'required|numeric',
-			'address' => 'required|string',
-			'photo' => 'nullable|image|mimes:jpeg,png,jpg',
+					'name' => 'required|string',
+					'service' => 'required|string',
+					'date_of_birth' => 'required|date',
+					'phone' => 'required|numeric',
+					'address' => 'required|string',
+					'photo' => 'nullable|image|mimes:jpeg,png,jpg',
         ]);
 
         try {
@@ -99,63 +99,68 @@ class DoctorsController extends Controller
             $email = '';
             $password = '';
 
-            $doctor = Doctor::findOrFail($id);
+						$doctor = Doctor::findOrFail($id);
+						
             if ($request->nip != $doctor->nip) {
-                $this->validate($request, [
-                    'nip' => 'required|numeric|unique:doctors,nip',
-                ]);
-                $nip = $request->nip;
+							$this->validate($request, [
+								'nip' => 'required|numeric|unique:doctors,nip',
+							]);
+							$nip = $request->nip;
             } else {
-                $nip = $doctor->nip;
-            }
-            if ($request->email != $doctor->login->email) {
-                $this->validate($request, [
-                    'email' => 'required|email|unique:users,email'
-                ]);
-                $email = $request->email;
+							$nip = $doctor->nip;
+						}
+
+						if ($request->email != $doctor->login->email) {
+							$this->validate($request, [
+								'email' => 'required|email|unique:users,email'
+							]);
+							$email = $request->email;
             } else {
-				$email = $doctor->login->email;
-            }
+							$email = $doctor->login->email;
+						}
+						
+
             if ($request->password) {
-				$this->validate($request, [
-					'password' => 'required|confirmed|min:4'
-				]);
-				$password = bcrypt($request->password);
-			} else {
-				$password = $doctor->login->password;
+							$this->validate($request, [
+								'password' => 'required|confirmed|min:4'
+							]);
+							$password = bcrypt($request->password);
+						} else {
+							$password = $doctor->login->password;
             }
-            
+
             $file_name = null;
             if ($request->hasFile('photo')) {
-				if ($doctor != null) {
-					Storage::disk('photo')->delete('photo/'.$doctor->photo);
-				}
-				$path = public_path('images/photo');
-				$files = $request->photo;
-				$file_name = time().'.'.$files->getClientOriginalExtension();
-				$files->move($path, $file_name);
+							if ($doctor != null) {
+								Storage::disk('photo')->delete('photo/'.$doctor->photo);
+							}
+							$path = public_path('images/photo');
+							$files = $request->photo;
+							$file_name = time().'.'.$files->getClientOriginalExtension();
+							$files->move($path, $file_name);
             }
             
             $user = User::findOrFail($doctor->user_id);
-			$user->update([
-				'email' => $email,
-				'password' => $password,
+						$user->update([
+							'email' => $email,
+							'password' => $password,
             ]);
             
             $doctor->update([
-				'nip' => $nip,
-                'name' => $request->name,
-                'service_id' => $request->service,
-				'date_of_birth' => $request->date_of_birth,
-				'phone' => $request->phone,
-				'address' => $request->address,
-				'photo' => $file_name
-			]);
+							'nip' => $nip,
+							'name' => $request->name,
+							'service_id' => $request->service,
+							'date_of_birth' => $request->date_of_birth,
+							'phone' => $request->phone,
+							'address' => $request->address,
+							'photo' => $file_name
+						]);
             session()->flash('success', 'Data Dokter Berhasil di-Ubah !');
-			return redirect(route('doctors.index'));
+						return redirect(route('doctors.index'));
         } catch (\Exception $e) {
-			session()->flash('error', 'Terjadi Kesalahan !');
-			return redirect()->back();
+					dd($e);
+					session()->flash('error', 'Terjadi Kesalahan !');
+					return redirect()->back();
         }
     }
 

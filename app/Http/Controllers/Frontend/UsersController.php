@@ -178,7 +178,7 @@ class UsersController extends Controller
 
 			try {
 				$user = User::findOrFail(auth()->user()->id);
-				$number = time().rand(100, 999).$user->id.rand(0,9);
+				$number = time().rand(10, 99).$user->id.rand(0,9);
 
 				$regist = Registration::firstOrCreate([
 					'patient_id' => $user->pasien->id,
@@ -191,7 +191,7 @@ class UsersController extends Controller
 				session()->flash('success', 'Berhasil Mendaftar Rawat Jalan ! Silahkan Tunjukan Kepada Operator / Resepsionis !');
 				return redirect(route('code.rawat.jalan', $regist->id));
 			} catch (\Exception $e) {
-				dd($request->all());
+				dd($e);
 				session()->flash('error', 'Terjadi Kesalahan ! Silahkan Ulangi Dalam Beberapa Saat !');				
 				return redirect()->back();
 			}
@@ -199,8 +199,9 @@ class UsersController extends Controller
 
 		public function code()
 		{
+			$user = Auth()->user();
 			$services = Service::orderBy('name', 'DESC')->get();
-			$regist = Registration::orderBy('created_at', 'DESC')->get();
+			$regist = Registration::orderBy('created_at', 'DESC')->where('patient_id', '=', $user->pasien->id)->get();
 			return view('frontend.users.code', compact('services', 'regist'));
 		}
 
@@ -241,7 +242,6 @@ class UsersController extends Controller
 
 				return view('frontend.users.history', compact('check', 'services'));
 			} catch (\Exception $e) {
-				dd($e);
 				session()->flash('error', 'Terjadi Kesalahan !');
 				return redirect()->back();
 			}

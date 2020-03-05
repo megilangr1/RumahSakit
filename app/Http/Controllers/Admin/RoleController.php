@@ -43,7 +43,7 @@ class RoleController extends Controller
             $roles->delete();
 
             session()->flash('success', 'Data Berhasil di-Hapus !');
-            return redirect(route('role.index'));
+            return redirect(route('roles.index'));
         } catch (\Exception $e) {
             session()->flash('error', 'Terjadi Kesalahan !');
             return redirect()->back();

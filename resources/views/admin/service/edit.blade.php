@@ -39,7 +39,9 @@
 					</div>
 					<div class="form-actions noborder">
 						<button type="submit" class="btn blue">Edit Data Poli</button>
-						<button type="button" class="btn default">Reset Input</button>
+						<a href="{{ route('services.index') }}" class="btn default">
+							Kembali
+						</a>
 					</div>
 				</div>
 			</form>

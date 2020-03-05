@@ -166,7 +166,7 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="">Nama Obat : </label>
-											<input type="text" name="medicine_name" id="medicine_name" class="form-control" placeholder="Masukan Hasil Diagnosa..">
+											<input type="text" name="medicine_name" id="medicine_name" class="form-control" placeholder="Masukan Nama Obat..">
 										</div>
 										<div class="form-group">
 											<label for="">Aturan Minum :</label>

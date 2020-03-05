@@ -22,11 +22,11 @@ class CheckUp extends Model
 
 	public function diagnosa()
 	{
-		return $this->belongsTo('App\Diagnosis', 'id', 'check_up_id');
+		return $this->hasMany('App\Diagnosis', 'check_up_id', 'id');
 	}
 
 	public function obat()
 	{
-		return $this->hasMany('App\Prescription');
+		return $this->hasMany('App\Prescription', 'check_up_id', 'id');
 	}
 }

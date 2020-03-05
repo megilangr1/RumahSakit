@@ -22,7 +22,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group form-md-line-input {{ $errors->has('nip') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-								<input type="number" name="nip" id="nip" class="form-control" required value="{{ $edit->nip }}" autofocus autocomplete="off" disabled>
+								<input type="number" name="nip" id="nip" class="form-control" required value="{{ $edit->nip }}" autofocus autocomplete="off" readonly>
 								<label for="">NIP Dokter : <span class="required">*</span></label>
 								<p style="color: red;">{{ $errors->first('nip') }}</p>
 							</div>
@@ -63,7 +63,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group form-md-line-input {{ $errors->has('email') ? 'has-error':'' }}" style="margin-bottom: 10px;">
-								<input type="email" name="email" id="email" class="form-control" required value="{{ $edit->login->email }}" disabled>
+								<input type="email" name="email" id="email" class="form-control" required value="{{ $edit->login->email }}" readonly>
 								<label for="">E-Mail Dokter : <span class="required">*</span></label>
 								<p style="color: red;">{{ $errors->first('email') }}</p>
 							</div>

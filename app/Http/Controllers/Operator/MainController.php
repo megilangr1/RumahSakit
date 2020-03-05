@@ -29,7 +29,7 @@ class MainController extends Controller
 
 	public function regist()
 	{
-		$regist = Registration::orderBy('created_at', 'DESC')->where('status', '=', '0')->get();
+		$regist = Registration::orderBy('regist_date', 'ASC')->where('status', '=', '0')->get();
 		return view('operator.regist.index', compact('regist'));
 	}
 
@@ -41,7 +41,7 @@ class MainController extends Controller
 			$doctor = Doctor::where('service_id', '=', $regist->service_id)->get();
 			return view('operator.regist.show', compact('regist', 'doctor'));
 		} catch (\Exception $e) {
-			session()->flash('error', 'Terjadi Kesalahan !');
+			session()->flash('error', 'Nomor Pendaftaran Bukan Untuk Hari Ini !');
 			return redirect()->back();
 		}
 	}
